@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 /**
@@ -34,7 +33,7 @@ public class TaskRepository {
 
         CriteriaQuery<Task> q = cb.createQuery(Task.class);
         Root<Task> c = q.from(Task.class);
-        q.where(cb.equal(c.get("status"), status));
+        q.where(cb.equal(c.get(Task_.status), status));
 
         TypedQuery<Task> query = em.createQuery(q);
 
@@ -58,7 +57,7 @@ public class TaskRepository {
     public void deleteById(Long id) {
         Task task = em.find(Task.class, id);
         if (task == null) {
-            throw new TaskNotFoundException("task " + id + " not found !");
+            throw new TaskNotFoundException("task '" + id + "' not found !");
         }
 
         em.remove(task);
