@@ -4,13 +4,14 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 import javax.mvc.event.BeforeControllerEvent;
 import javax.mvc.event.BeforeProcessViewEvent;
 
 @ApplicationScoped
 public class MvcEventListener {
 
-    private static final Logger LOGGER = Logger.getLogger(MvcEventListener.class.getName());
+    @Inject Logger LOGGER;
 
     private void onControllerMatched(@Observes BeforeControllerEvent event) {
         LOGGER.info(() -> "Controller matched for " + event.getUriInfo().getRequestUri());

@@ -74,7 +74,7 @@ public class TaskController {
     @POST
     @Path("{id}")
     public Response update(@PathParam(value = "id") String id, @Valid @BeanParam TaskForm form) {
-        log.log(Level.INFO, "updating existed task{0}, task form{1}", new Object[]{id, form});
+        log.log(Level.INFO, "updating existed task@id:{0}, form data:{1}", new Object[]{id, form});
 
         if (validationResult.isFailed()) {
 
