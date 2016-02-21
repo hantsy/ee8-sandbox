@@ -7,7 +7,10 @@ package com.hantsylabs.example.ee8.mvc.domain;
 
 import static com.hantsylabs.example.ee8.mvc.domain.Task.Status.TODO;
 import java.io.Serializable;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +18,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -29,6 +35,16 @@ public class Task implements Serializable {
         TODO, DOING, DONE;
     }
 
+    public static Comparator<Task> COMPARATOR = Comparator
+            .comparing(Task::getName)
+            .thenComparing(Task::getDescription);
+
+    public static Function<Task, String> TO_STRING = t
+            -> "Task[name:" + t.getName()
+            + "\n description:" + t.getDescription()
+            + "\n status:" + t.getStatus()
+            + "\n createdAt:" + t.getCreatedAt() + "]";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -42,6 +58,9 @@ public class Task implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status = TODO;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -73,6 +92,14 @@ public class Task implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -115,6 +142,11 @@ public class Task implements Serializable {
     @Override
     public String toString() {
         return "Task{" + "id=" + id + ", name=" + name + ", description=" + description + ", status=" + status + '}';
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.setCreatedAt(new Date());
     }
 
 }

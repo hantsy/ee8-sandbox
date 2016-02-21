@@ -1,7 +1,7 @@
 package com.hantsylabs.example.ee8.mvc;
 
 import java.util.logging.Logger;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
@@ -9,7 +9,7 @@ import javax.enterprise.inject.spi.InjectionPoint;
  *
  * @author hantsy
  */
-@ApplicationScoped
+@Dependent
 public class Resources {
 
     @Produces

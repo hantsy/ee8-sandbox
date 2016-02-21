@@ -1,5 +1,8 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
+import com.hantsylabs.example.ee8.mvc.domain.Task;
+import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -10,6 +13,7 @@ import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,18 +36,31 @@ public class TaskController {
     @Inject
     private BindingResult validationResult;
 
-    @GET
-    @View("tasks.xhtml")
-    public void allTasks() {
+    @Inject
+    TaskRepository taskRepostory;
 
+    @GET
+    @View("tasks.jspx")
+    public void allTasks() {
+        log.log(Level.INFO, "fetching all tasks");
+
+        List<Task> todotasks = taskRepostory.findByStatus(Task.Status.TODO);
+        List<Task> doingtasks = taskRepostory.findByStatus(Task.Status.DOING);
+        List<Task> donetasks = taskRepostory.findByStatus(Task.Status.DONE);
+
+        log.log(Level.INFO, "got all tasks: todotasks@{0}, doingtasks@{1}, donetasks@{2}", new Object[]{todotasks.size(), doingtasks.size(), donetasks.size()});
+
+        models.put("todotasks", todotasks);
+        models.put("doingtasks", doingtasks);
+        models.put("donetasks", donetasks);
     }
 
     @GET
     @Path("{id}")
-    public Viewable taskDetails(@PathParam("id") String id) {
+    public Viewable taskDetails(@PathParam("id") @NotNull String id) {
         log.log(Level.INFO, "get task by id@{0}", id);
 
-        return new Viewable("details.xhtml");
+        return new Viewable("details.jspx");
     }
 
     @GET
@@ -51,7 +68,7 @@ public class TaskController {
     public Viewable add() {
         log.log(Level.INFO, "add new task");
 
-        return new Viewable("new.xhtml");
+        return new Viewable("new.jspx");
     }
 
     @POST
@@ -70,7 +87,7 @@ public class TaskController {
     public Viewable edit(@PathParam("id") String id) {
         log.log(Level.INFO, "edit task @{0}", id);
 
-        return new Viewable("edit.xhtml");
+        return new Viewable("edit.jspx");
     }
 
     @PUT
