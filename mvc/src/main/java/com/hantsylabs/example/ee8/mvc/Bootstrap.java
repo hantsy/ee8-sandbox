@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -20,7 +21,7 @@ import javax.inject.Inject;
  */
 @Stateless
 @Startup
-@javax.ejb.Singleton
+@Transactional(Transactional.TxType.REQUIRED)
 public class Bootstrap {
 
     @Inject

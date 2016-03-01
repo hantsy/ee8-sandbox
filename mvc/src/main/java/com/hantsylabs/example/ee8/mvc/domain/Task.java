@@ -19,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -43,7 +44,9 @@ public class Task implements Serializable {
             -> "Task[name:" + t.getName()
             + "\n description:" + t.getDescription()
             + "\n status:" + t.getStatus()
-            + "\n createdAt:" + t.getCreatedAt() + "]";
+            + "\n createdAt:" + t.getCreatedDate()
+            + "\n lastModifiedAt:" + t.getLastModifiedDate()
+            + "]";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,7 +63,12 @@ public class Task implements Serializable {
     private Status status = TODO;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "last_modified_date")
+    private Date lastModifiedDate;
 
     public Long getId() {
         return id;
@@ -94,21 +102,31 @@ public class Task implements Serializable {
         this.status = status;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.description);
-        hash = 71 * hash + Objects.hashCode(this.status);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 67 * hash + Objects.hashCode(this.description);
+        hash = 67 * hash + Objects.hashCode(this.status);
+        hash = 67 * hash + Objects.hashCode(this.createdDate);
+        hash = 67 * hash + Objects.hashCode(this.lastModifiedDate);
         return hash;
     }
 
@@ -136,17 +154,23 @@ public class Task implements Serializable {
         if (this.status != other.status) {
             return false;
         }
+        if (!Objects.equals(this.createdDate, other.createdDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastModifiedDate, other.lastModifiedDate)) {
+            return false;
+        }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Task{" + "id=" + id + ", name=" + name + ", description=" + description + ", status=" + status + '}';
     }
 
     @PrePersist
     public void prePersist() {
-        this.setCreatedAt(new Date());
+        this.setCreatedDate(new Date());
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.setLastModifiedDate(new Date());
     }
 
 }

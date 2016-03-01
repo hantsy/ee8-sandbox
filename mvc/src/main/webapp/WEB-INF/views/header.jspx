@@ -1,0 +1,27 @@
+<!-- any content can be specified here e.g.: -->
+<nav  xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:jsp="http://java.sun.com/JSP/Page" id="nav" version="2.0" class="navbar navbar-inverse navbar-fixed-top">
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+
+    <c:url value="/mvc/tasks" var="tasks" />
+    <c:url value="/mvc/tasks/new" var="tasksNew" />
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"><jsp:text/></span>
+                <span class="icon-bar"><jsp:text/></span>
+                <span class="icon-bar"><jsp:text/></span>
+            </button>
+            <a class="navbar-brand" href="${tasks}">Java EE 8 MVC Samples</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="${tasks}">Home</a></li>
+                <li><a href="${tasksNew}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true">${null}</span> New Task</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -3,6 +3,7 @@ package com.hantsylabs.example.ee8.mvc.web;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Named;
 import javax.mvc.annotation.RedirectScoped;
 
 /**
@@ -11,7 +12,8 @@ import javax.mvc.annotation.RedirectScoped;
  * @author Hantsy Bai<hantsy@gmail.com>
  */
 @RedirectScoped
-public class AlertMessage implements Serializable{
+@Named("flashMessage")
+public class AlertMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +24,9 @@ public class AlertMessage implements Serializable{
     private Type type = Type.info;
     private String text;
     private String code;
+
+    public AlertMessage() {
+    }
 
     public AlertMessage(Type type, String text) {
         this.type = type;
@@ -45,7 +50,12 @@ public class AlertMessage implements Serializable{
     public String getCode() {
         return code;
     }
-    
+
+    public void notify(Type type, String text) {
+        this.type = type;
+        this.text = text;
+    }
+
     public static AlertMessage success(String text) {
         return new AlertMessage(Type.success, text);
     }

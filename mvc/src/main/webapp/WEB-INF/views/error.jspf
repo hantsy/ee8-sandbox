@@ -67,23 +67,18 @@
                 </c:if>
 
                 <div class="page-header">
-                    <h1>TASK DETAILS</h1>
+                    <h1>EXCEPTIONS</h1>
                 </div>
                 <!-- task list-->
                 <div class="row">
                     <div class="col-md-12">
-                        <dl class="dl-horizontal">
-                            <dt>Task Name:</dt>
-                            <dd>${details.name}</dd>
-                            <dt>Task Description:</dt>
-                            <dd>${details.description}</dd>
-                            <dt>Status:</dt>
-                            <dd>${details.status}</dd>
-                            <dt>Created At:</dt>
-                            <dd>${details.createdDate}</dd>
-                            <dt>Last Modified At:</dt>
-                            <dd>${details.lastModifiedDate}</dd>
-                        </dl>
+                        <div class="panel panel-danger">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"><jsp:text/></span>  Error Details</div>
+                            <div class="panel-body">
+                                <p>${ex}</p>
+                            </div>	
+                        </div>	
                     </div>
                 </div>
                 <!-- end of task list-->
@@ -116,3 +111,4 @@
         </body>
     </html>
 </jsp:root>
+
