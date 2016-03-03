@@ -10,18 +10,16 @@ import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 /**
  *
  * @author hantsy
  */
-@Stateless
 @Startup
-@Transactional(Transactional.TxType.REQUIRED)
+@Singleton
 public class Bootstrap {
 
     @Inject
