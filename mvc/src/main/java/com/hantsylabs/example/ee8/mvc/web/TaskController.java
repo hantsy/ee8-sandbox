@@ -1,5 +1,6 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
+import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
 import com.hantsylabs.example.ee8.mvc.domain.Task;
 import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
 import com.hantsylabs.example.ee8.mvc.web.AlertMessage.Type;
@@ -67,9 +68,6 @@ public class TaskController {
     public Viewable taskDetails(@PathParam("id") @NotNull Long id) {
         log.log(Level.INFO, "get task by id@{0}", id);
         Task task = taskRepository.findById(id);
-        if (task == null) {
-            throw new TaskNotFoundException(id);
-        }
 
         models.put("details", task);
         return new Viewable("details.jspx");
@@ -117,9 +115,6 @@ public class TaskController {
         log.log(Level.INFO, "edit task @{0}", id);
 
         Task task = taskRepository.findById(id);
-        if (task == null) {
-            throw new TaskNotFoundException(id);
-        }
 
         models.put("task", task);
         return new Viewable("edit.jspx");
@@ -143,10 +138,6 @@ public class TaskController {
 
         Task task = taskRepository.findById(id);
 
-        if (task == null) {
-            throw new TaskNotFoundException(id);
-        }
-
         task.setName(form.getName());
         task.setDescription(form.getDescription());
 
@@ -163,9 +154,6 @@ public class TaskController {
     public Response delete(@PathParam("id") Long id) {
         log.log(Level.INFO, "deleting task @{0}", id);
         Task task = taskRepository.findById(id);
-        if (task == null) {
-            throw new TaskNotFoundException(id);
-        }
         taskRepository.delete(task);
 
         AlertMessage flashMessage = AlertMessage.danger("Task was deleted!");

@@ -22,7 +22,7 @@ public class TaskRepository {
     public Task findById(Long id) {
         Task task = em.find(Task.class, id);
         if (task == null) {
-            throw new TaskNotFoundException("task " + id + " not found !");
+            throw new TaskNotFoundException( id);
         }
 
         return task;
@@ -57,7 +57,7 @@ public class TaskRepository {
     public void deleteById(Long id) {
         Task task = em.find(Task.class, id);
         if (task == null) {
-            throw new TaskNotFoundException("task '" + id + "' not found !");
+            throw new TaskNotFoundException(id);
         }
 
         em.remove(task);
