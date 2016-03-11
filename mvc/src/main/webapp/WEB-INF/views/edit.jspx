@@ -74,6 +74,8 @@
                     <div class="col-md-12">
                         <c:url var="formActionUrl" value="/mvc/tasks/${task.id}"/>
                         <form id="form" name="form" role="form" class="form" action="${formActionUrl}" method="post">                    
+                           
+                            <input type="hidden" name="_method" value="PUT"/>
                             <div
                                 class="form-group">
                                 <label class="control-label" for="name">Task Name:</label>

@@ -102,9 +102,10 @@
                                             <p>${task.description}</p>
                                             <p>
                                                 <c:url var="markDoingUrl"
-                                                       value="/tasks/${task.id}?action=MARK_DOING" />
+                                                       value="/mvc/tasks/${task.id}/status" />
                                             <form action="${markDoingUrl}" method="post">
-                                                <input type="hidden" name="_method" value="PUT"></input>
+                                                <input type="hidden" name="_method" value="PUT"><jsp:text /></input>
+                                                <input type="hidden" name="status" value="DOING"><jsp:text /></input>
                                                 <button type="submit" class="btn btn-sm btn-primary">
                                                     <span class="glyphicon glyphicon-play" aria-hidden="true"><jsp:text /></span>
                                                     START
@@ -138,9 +139,10 @@
                                             <p>${task.description}</p>
                                             <p>
                                                 <c:url var="markDoneUrl"
-                                                       value="/tasks/${task.id}?action=MARK_DONE" />
+                                                       value="/mvc/tasks/${task.id}/status" />
                                             <form action="${markDoneUrl}" method="post">
-                                                <input type="hidden" name="_method" value="PUT"></input>
+                                                <input type="hidden" name="_method" value="PUT"><jsp:text /></input>
+                                                <input type="hidden" name="status" value="DONE"><jsp:text /></input>
                                                 <button type="submit" class="btn btn-sm btn-success">
                                                     <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"><jsp:text /></span>
                                                     DONE
@@ -172,7 +174,7 @@
                                             <h4>#${task.id} ${task.name}</h4>
                                             <p>${task.description}</p>
                                             <p>
-                                                <c:url var="deleteUrl" value="/tasks/${task.id}" />
+                                            <c:url var="deleteUrl" value="/mvc/tasks/${task.id}" />
                                             <form action="${deleteUrl}" method="post">
                                                 <input type="hidden" name="_method" value="DELETE"></input>
                                                 <button type="submit" class="btn btn-sm btn-danger">

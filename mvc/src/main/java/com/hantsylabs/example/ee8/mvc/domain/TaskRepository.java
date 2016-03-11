@@ -22,7 +22,7 @@ public class TaskRepository {
     public Task findById(Long id) {
         Task task = em.find(Task.class, id);
         if (task == null) {
-            throw new TaskNotFoundException( id);
+            throw new TaskNotFoundException(id);
         }
 
         return task;
@@ -51,6 +51,7 @@ public class TaskRepository {
     }
 
     public void delete(Task task) {
+        task = em.merge(task);
         em.remove(task);
     }
 

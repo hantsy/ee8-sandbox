@@ -1,6 +1,5 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
-import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
 import com.hantsylabs.example.ee8.mvc.domain.Task;
 import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
 import com.hantsylabs.example.ee8.mvc.web.AlertMessage.Type;
@@ -19,6 +18,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -42,7 +42,7 @@ public class TaskController {
 
     @Inject
     TaskRepository taskRepository;
-    
+
     @Inject
     AlertMessage flashMessage;
 
@@ -104,7 +104,7 @@ public class TaskController {
         taskRepository.save(task);
 
         flashMessage.notify(Type.success, "Task was created successfully!");
-       //models.put("flashMessage", flashMessage);
+        //models.put("flashMessage", flashMessage);
 
         return Response.ok("redirect:tasks").build();
     }
@@ -141,10 +141,36 @@ public class TaskController {
         task.setName(form.getName());
         task.setDescription(form.getDescription());
 
-        taskRepository.save(task);
+        taskRepository.update(task);
 
-        AlertMessage flashMessage = AlertMessage.info("Task was updated successfully!");
-        models.put("flashMessage", flashMessage);
+        flashMessage.notify(Type.info, "Task was updated successfully!");
+
+        return Response.ok("redirect:tasks").build();
+    }
+    
+    @PUT
+    @Path("{id}/status")
+    public Response update(@PathParam(value = "id") Long id, @NotNull @FormParam(value = "status") String status) {
+        log.log(Level.INFO, "updating status of the existed task@id:{0}, status:{1}", new Object[]{id, status});
+
+        if (validationResult.isFailed()) {
+            AlertMessage alert = AlertMessage.danger("Validation voilations!");
+            validationResult.getAllViolations()
+                    .stream()
+                    .forEach((ConstraintViolation t) -> {
+                        alert.addError(t.getPropertyPath().toString(), "", t.getMessage());
+                    });
+            models.put("errors", alert);
+            return Response.status(BAD_REQUEST).entity("redirect:tasks").build();
+        }
+
+        Task task = taskRepository.findById(id);
+
+        task.setStatus(Task.Status.valueOf(status));
+
+        taskRepository.update(task);
+
+        flashMessage.notify(Type.info, "Task status was updated successfully!");
 
         return Response.ok("redirect:tasks").build();
     }
