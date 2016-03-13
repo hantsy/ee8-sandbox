@@ -10,9 +10,6 @@
 
     <modules>
         <module>mvc</module>
-<!--        <module>hello</module>
-        <module>hello-cdi</module>
-        <module>post-redirect-get</module>-->
     </modules>    
 
     <properties>

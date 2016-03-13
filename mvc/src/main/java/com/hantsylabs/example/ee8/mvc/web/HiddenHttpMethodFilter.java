@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * This class is modified from the one shipped with Spring framework to support PUT, DELETE methods in form submission.
+ * 
  * @author hantsy
  */
 @WebFilter(filterName = "HiddenHttpMethodFilter", urlPatterns = {"/*"}, dispatcherTypes = {DispatcherType.REQUEST})
