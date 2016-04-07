@@ -16,6 +16,8 @@ import javax.mvc.binding.BindingResult;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.executable.ExecutableType;
+import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -83,6 +85,7 @@ public class TaskController {
 
     @POST
     //@CsrfValid
+    @ValidateOnExecution(type = ExecutableType.NONE)
     public Response save(@Valid @BeanParam TaskForm form) {
         log.log(Level.INFO, "saving new task @{0}", form);
 
@@ -94,7 +97,7 @@ public class TaskController {
                         alert.addError(t.getPropertyPath().toString(), "", t.getMessage());
                     });
             models.put("errors", alert);
-            return Response.status(BAD_REQUEST).entity("add.jsp").build();
+            return Response.status(BAD_REQUEST).entity("add.jspx").build();
         }
 
         Task task = new Task();

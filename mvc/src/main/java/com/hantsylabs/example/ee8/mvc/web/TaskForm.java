@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
 
 @RequestScoped
@@ -16,6 +17,7 @@ public class TaskForm implements Serializable {
     private String name;
 
     @NotNull
+    @Size(min = 10, max = 2000)
     @FormParam("description")
     private String description;
 

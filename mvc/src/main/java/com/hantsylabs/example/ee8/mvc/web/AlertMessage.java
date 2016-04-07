@@ -72,7 +72,7 @@ public class AlertMessage implements Serializable {
         return new AlertMessage(Type.info, text);
     }
 
-    private List<Error> errors = new ArrayList<Error>();
+    private List<Error> errors = new ArrayList<>();
 
     public List<Error> getErrors() {
         return errors;
@@ -86,11 +86,13 @@ public class AlertMessage implements Serializable {
         this.errors.add(new Error(field, code, message));
     }
 
-    class Error {
+    public static class Error {
 
         private String code;
         private String message;
         private String field;
+        
+        public Error(){}
 
         private Error(String field, String code, String message) {
             this.field = field;
