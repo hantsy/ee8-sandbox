@@ -94,7 +94,8 @@ public class TaskController {
             validationResult.getAllViolations()
                     .stream()
                     .forEach((ConstraintViolation t) -> {
-                        alert.addError(t.getPropertyPath().toString(), "", t.getMessage());
+                        String path = t.getPropertyPath().toString();
+                        alert.addError(path.substring(path.lastIndexOf(".") + 1), "", t.getMessage());
                     });
             models.put("errors", alert);
             return Response.status(BAD_REQUEST).entity("add.jspx").build();
@@ -150,7 +151,7 @@ public class TaskController {
 
         return Response.ok("redirect:tasks").build();
     }
-    
+
     @PUT
     @Path("{id}/status")
     public Response update(@PathParam(value = "id") Long id, @NotNull @FormParam(value = "status") String status) {
