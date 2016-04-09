@@ -154,19 +154,8 @@ public class TaskController {
 
     @PUT
     @Path("{id}/status")
-    public Response update(@PathParam(value = "id") Long id, @NotNull @FormParam(value = "status") String status) {
+    public Response updateStatus(@PathParam(value = "id") Long id, @NotNull @FormParam(value = "status") String status) {
         log.log(Level.INFO, "updating status of the existed task@id:{0}, status:{1}", new Object[]{id, status});
-
-        if (validationResult.isFailed()) {
-            AlertMessage alert = AlertMessage.danger("Validation voilations!");
-            validationResult.getAllViolations()
-                    .stream()
-                    .forEach((ConstraintViolation t) -> {
-                        alert.addError(t.getPropertyPath().toString(), "", t.getMessage());
-                    });
-            models.put("errors", alert);
-            return Response.status(BAD_REQUEST).entity("redirect:tasks").build();
-        }
 
         Task task = taskRepository.findById(id);
 
