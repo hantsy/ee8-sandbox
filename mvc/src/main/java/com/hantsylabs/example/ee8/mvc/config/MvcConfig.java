@@ -14,6 +14,7 @@ public class MvcConfig extends Application {
         Set<Class<?>> classes=new HashSet<>();
         classes.add(TaskController.class);
         classes.add(PrimitiveConverterProvider.class);
+        classes.add(TaskNotFoundExceptionMapper.class);
         
         return classes;
     }

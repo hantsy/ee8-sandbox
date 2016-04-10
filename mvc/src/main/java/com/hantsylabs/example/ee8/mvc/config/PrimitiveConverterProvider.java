@@ -51,21 +51,6 @@ public class PrimitiveConverterProvider implements ParamConverterProvider {
                 }
             };
 
-        } else if (rawType.getName().equals(String.class.getName())) {
-
-            return new ParamConverter<T>() {
-                @Override
-                public T fromString(String value) {
-
-                    return value == null || "".equals(value) ? null : (T) value;
-                }
-
-                @Override
-                public String toString(T value) {
-                    return value == null ? "" : (String) value;
-                }
-            };
-
         } else {
             return null;
         }
