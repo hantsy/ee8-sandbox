@@ -29,7 +29,7 @@ public class TaskNotFoundExceptionMapper implements ExceptionMapper<TaskNotFound
     public Response toResponse(TaskNotFoundException exception) {
         log.log(Level.INFO, "handling exception : TaskNotFoundException");
         models.put("error", exception.getMessage());
-        return Response.status(Response.Status.NOT_FOUND).entity("error.jspx").build();
+        return Response.status(Response.Status.NOT_FOUND).entity("error.xhtml").build();
     }
     
 }

@@ -49,7 +49,7 @@ public class TaskController {
     AlertMessage flashMessage;
 
     @GET
-    @View("tasks.jspx")
+    @View("tasks.xhtml")
     public void allTasks() {
         log.log(Level.INFO, "fetching all tasks");
 
@@ -72,7 +72,7 @@ public class TaskController {
         Task task = taskRepository.findById(id);
 
         models.put("details", task);
-        return new Viewable("details.jspx");
+        return new Viewable("details.xhtml");
     }
 
     @GET
@@ -80,7 +80,7 @@ public class TaskController {
     public Viewable add() {
         log.log(Level.INFO, "add new task");
 
-        return new Viewable("add.jspx");
+        return new Viewable("add.xhtml");
     }
 
     @POST
@@ -98,7 +98,7 @@ public class TaskController {
                         alert.addError(path.substring(path.lastIndexOf(".") + 1), "", t.getMessage());
                     });
             models.put("errors", alert);
-            return Response.status(BAD_REQUEST).entity("add.jspx").build();
+            return Response.status(BAD_REQUEST).entity("add.xhtml").build();
         }
 
         Task task = new Task();
@@ -121,7 +121,7 @@ public class TaskController {
         Task task = taskRepository.findById(id);
 
         models.put("task", task);
-        return new Viewable("edit.jspx");
+        return new Viewable("edit.xhtml");
     }
 
     @PUT
