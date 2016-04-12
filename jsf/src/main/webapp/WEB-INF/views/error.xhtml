@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/layout/template.xhtml">
+    <ui:define name="pageTitle"> Psst...something was wrong!</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-danger">${error}</p>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

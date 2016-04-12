@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/layout/template.xhtml">
+    <ui:define name="pageTitle"> TASK DETAILS </ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-12">
+                <dl class="dl-horizontal">
+                    <dt>Task Name:</dt>
+                    <dd>${details.name}</dd>
+                    <dt>Task Description:</dt>
+                    <dd>${details.description}</dd>
+                    <dt>Status:</dt>
+                    <dd>${details.status}</dd>
+                    <dt>Created At:</dt>
+                    <dd>${details.createdDate}</dd>
+                    <dt>Last Modified At:</dt>
+                    <dd>${details.lastModifiedDate}</dd>
+                </dl>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

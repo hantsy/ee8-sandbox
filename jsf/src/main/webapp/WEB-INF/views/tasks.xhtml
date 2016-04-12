@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="pageTitle"> TASK LIST</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        TODO
+                    </div>
+                    <div class="panel-body">
+                        <p>Tasks newly added in the backlog.</p>
+                    </div>
+
+                    <!-- List group -->
+                    <c:if test="${not empty todotasks}">
+                        <ul id="todotasks" class="list-group">
+                            <c:forEach var="task" begin="0" items="${todotasks}">
+                                <li class="list-group-item">
+                                    <h4>
+                                        <span>#${task.id} ${task.name}</span> <span class="pull-right">
+                                            <c:set var="taskUrl" value="#{request.contextPath}/mvc/tasks/#{task.id}" /> 
+                                            <c:set var="taskEditUrl" value="#{request.contextPath}/mvc/tasks/#{task.id}/edit" /> 
+                                            <a href="${taskUrl}"> 
+                                                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                            </a> 
+                                            <a href="${taskEditUrl}"> 
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            </a>
+                                        </span>
+                                    </h4>
+                                    <p>${task.description}</p>
+                                    <p>
+                                        <c:set var="markDoingUrl"
+                                               value="#{request.contextPath}/mvc/tasks/#{task.id}/status" />
+                                        <form action="${markDoingUrl}" method="post">
+                                            <input type="hidden" name="_method" value="PUT"></input>
+                                            <input type="hidden" name="status" value="DOING"></input>
+                                            <button type="submit" class="btn btn-sm btn-primary">
+                                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                                                START
+                                            </button>
+                                        </form>
+                                    </p>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                </div>
+            </div>
+
+            <div id="doingtasks" class="col-md-4 col-xs-12">
+                <div class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        WORK IN PROGRESS
+                    </div>
+                    <div class="panel-body">
+                        <p>Tasks had been assigned and started.</p>
+                    </div>
+
+                    <!-- List group -->
+                    <c:if test="${not empty doingtasks}">
+                        <ul id="doingtasks" class="list-group">
+                            <c:forEach var="task" begin="0" items="${doingtasks}">
+                                <li class="list-group-item">
+                                    <h4>#${task.id} ${task.name}</h4>
+                                    <p>${task.description}</p>
+                                    <p>
+                                        <c:set var="markDoneUrl"
+                                               value="#{request.contextPath}/mvc/tasks/#{task.id}/status" />
+                                        <form action="${markDoneUrl}" method="post">
+                                            <input type="hidden" name="_method" value="PUT"></input>
+                                            <input type="hidden" name="status" value="DONE"></input>
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                                                DONE
+                                            </button>
+                                        </form>
+                                    </p>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                </div>
+            </div>
+            <div id="donetasks" class="col-md-4 col-xs-12">
+                <div class="panel panel-success">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        DONE
+                    </div>
+                    <div class="panel-body">
+                        <p>Tasks had been done successfully.</p>
+                    </div>
+
+                    <!-- List group -->
+                    <c:if test="${not empty donetasks}">
+                        <ul id="donetasks" class="list-group">
+                            <c:forEach var="task" begin="0" items="${donetasks}">
+                                <li class="list-group-item">
+                                    <h4>#${task.id} ${task.name}</h4>
+                                    <p>${task.description}</p>
+                                    <p>
+                                        <c:set var="deleteUrl" value="#{request.contextPath}/mvc/tasks/#{task.id}" />
+                                        <form action="${deleteUrl}" method="post">
+                                            <input type="hidden" name="_method" value="DELETE"></input>
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                DELETE
+                                            </button>
+                                        </form>
+                                    </p>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+

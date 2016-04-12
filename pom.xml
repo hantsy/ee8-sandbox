@@ -11,6 +11,7 @@
     <modules>
         <module>mvc</module>
 		<module>mvc-facelets</module>
+		<module>jsf</module>
     </modules>    
 
     <properties>
