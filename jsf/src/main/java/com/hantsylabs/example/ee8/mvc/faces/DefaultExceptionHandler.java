@@ -1,9 +1,9 @@
 package com.hantsylabs.example.ee8.mvc.faces;
 
 import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
-import com.hantsylabs.example.spring.web.TaskNotFoundException;
-import com.sun.faces.context.FacesFileNotFoundException;
+
 import java.util.Iterator;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.FacesException;
 import javax.faces.application.NavigationHandler;
@@ -13,10 +13,12 @@ import javax.faces.context.ExceptionHandlerWrapper;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
+import javax.inject.Inject;
 
 public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
 
-    private static final Logger log = LoggerFactory.getLogger(DefaultExceptionHandler.class);
+    @Inject
+    Logger log;
 
     private ExceptionHandler wrapped;
 
@@ -31,17 +33,17 @@ public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
 
     @Override
     public void handle() throws FacesException {
-    	log.debug("invoking custom ExceptionHandlder...");
+        log.log(Level.INFO, "invoking custom ExceptionHandlder...");
         Iterator<ExceptionQueuedEvent> events = getUnhandledExceptionQueuedEvents().iterator();
-        
+
         while (events.hasNext()) {
             ExceptionQueuedEvent event = events.next();
             ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event.getSource();
             Throwable t = context.getException();
-            log.debug("Exception@" + t);
-            log.debug("ExceptionHandlder began.");
-            log.debug("t instanceof FacesException@" + (t instanceof FacesException));
-            log.debug("t instanceof FacesFileNotFoundException@" + (t instanceof FacesFileNotFoundException));
+            log.log(Level.INFO, "Exception@" + t);
+            log.log(Level.INFO, "ExceptionHandlder began.");
+            log.log(Level.INFO, "t instanceof FacesException@" + (t instanceof FacesException));
+         //   log.log(Level.INFO, "t instanceof FacesFileNotFoundException@" + (t instanceof FacesFileNotFoundException));
             if (t instanceof ViewExpiredException) {
                 try {
                     handleViewExpiredException((ViewExpiredException) t);
@@ -50,38 +52,37 @@ public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
                 }
             }
 
-            if (t instanceof FacesFileNotFoundException|| t instanceof TaskNotFoundException) {
-                try {
-                    handleNotFoundException((Exception) t);
-                } finally {
-                    events.remove();
-                }
-            }
-            log.debug("ExceptionHandlder end.");
+//            if (t instanceof FacesFileNotFoundException || t instanceof TaskNotFoundException) {
+//                try {
+//                    handleNotFoundException((Exception) t);
+//                } finally {
+//                    events.remove();
+//                }
+//            }
+            log.log(Level.INFO, "ExceptionHandlder end.");
             getWrapped().handle();
         }
-        
 
     }
 
     private void handleViewExpiredException(ViewExpiredException vee) {
-        log.debug(" handling viewExpiredException...");
+        log.log(Level.INFO, " handling viewExpiredException...");
         FacesContext context = FacesContext.getCurrentInstance();
         String viewId = vee.getViewId();
-        log.debug("view id @" + viewId);
-        NavigationHandler nav =
-                context.getApplication().getNavigationHandler();
+        log.log(Level.INFO, "view id @" + viewId);
+        NavigationHandler nav
+                = context.getApplication().getNavigationHandler();
         nav.handleNavigation(context, null, viewId);
         context.renderResponse();
     }
 
     private void handleNotFoundException(Exception e) {
-        log.debug("handling exception:...");
+        log.log(Level.INFO, "handling exception:...");
         FacesContext context = FacesContext.getCurrentInstance();
         String viewId = "/error.xhtml";
-        log.debug("view id @" + viewId);
-        NavigationHandler nav =
-                context.getApplication().getNavigationHandler();
+        log.log(Level.INFO, "view id @" + viewId);
+        NavigationHandler nav
+                = context.getApplication().getNavigationHandler();
         nav.handleNavigation(context, null, viewId);
         context.getViewRoot().getViewMap(true).put("ex", e);
         context.renderResponse();

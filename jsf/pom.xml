@@ -38,7 +38,13 @@
             <scope>provided</scope>
         </dependency>
       
-        <!-- Needed until Java EE 8 -->
+        <!-- JSF 2.3 dependencies -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.3.0-m05</version>
+            <scope>provided</scope>
+        </dependency>
     
         <!--webjars resources -->
         <dependency>

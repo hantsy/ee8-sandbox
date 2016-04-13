@@ -1,5 +1,8 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
+import com.hantsylabs.example.ee8.mvc.domain.Task;
+import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
+import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
@@ -7,12 +10,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
-
-import com.hantsylabs.example.spring.jpa.TaskRepository;
-import com.hantsylabs.example.spring.model.Task;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.view.ViewScoped;
 
 /**
  * 
@@ -20,14 +20,14 @@ import com.hantsylabs.example.spring.model.Task;
  *
  */
 @Named("editTaskAction")
-@Scope(value = "view")
+@ViewScoped()
 public class EditTaskAction implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = LoggerFactory.getLogger(EditTaskAction.class);
+	@Inject Logger log;
 
 	@Inject
 	private TaskRepository taskRepository;
@@ -53,13 +53,13 @@ public class EditTaskAction implements Serializable {
 	}
 
 	public void init() {
-		log.debug(" get task of id @" + taskId);
+		log.log(Level.INFO," get task of id @" + taskId);
 		
 		if (!FacesContext.getCurrentInstance().isPostback()) {
 			if (taskId == null) {
 				task = new Task();
 			} else {
-				task = taskRepository.findOne(taskId);
+				task = taskRepository.findById(taskId);
 				if (task == null) {
 					throw new TaskNotFoundException(taskId);
 				}
@@ -68,7 +68,7 @@ public class EditTaskAction implements Serializable {
 	}
 
 	public String save() {
-		log.debug("saving task@" + task);
+		log.log(Level.INFO,"saving task@" + task);
 		this.task = taskRepository.save(task);
 		FacesMessage info= new FacesMessage(FacesMessage.SEVERITY_INFO, "Task is saved successfully!",   "Task is saved successfully!");
 		FacesContext.getCurrentInstance().addMessage(null, info);

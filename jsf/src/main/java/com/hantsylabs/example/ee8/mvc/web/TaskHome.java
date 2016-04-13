@@ -1,138 +1,137 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
+import com.hantsylabs.example.ee8.mvc.domain.Task;
+import com.hantsylabs.example.ee8.mvc.domain.Task.Status;
+import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
+import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.web.jsf.FacesContextUtils;
-
-import com.hantsylabs.example.spring.jpa.TaskRepository;
-import com.hantsylabs.example.spring.model.Status;
-import com.hantsylabs.example.spring.model.Task;
+import java.util.logging.Logger;
+import javax.faces.view.ViewScoped;
 
 /**
- * 
+ *
  * @author hantsy
  *
  */
 @Named("taskHome")
-@Scope(value = "view")
+@ViewScoped()
 public class TaskHome {
-	private static final Logger log = LoggerFactory.getLogger(TaskHome.class);
 
-	@Inject
-	private TaskRepository taskRepository;
+    @Inject
+    Logger log;
 
-	private List<TaskDetails> todotasks = new ArrayList<>();
+    @Inject
+    private TaskRepository taskRepository;
 
-	private List<TaskDetails> doingtasks = new ArrayList<>();
+    private List<TaskDetails> todotasks = new ArrayList<>();
 
-	private List<TaskDetails> donetasks = new ArrayList<>();
+    private List<TaskDetails> doingtasks = new ArrayList<>();
 
-	public List<TaskDetails> getTodotasks() {
-		return todotasks;
-	}
+    private List<TaskDetails> donetasks = new ArrayList<>();
 
-	public List<TaskDetails> getDoingtasks() {
-		return doingtasks;
-	}
+    public List<TaskDetails> getTodotasks() {
+        return todotasks;
+    }
 
-	public List<TaskDetails> getDonetasks() {
-		return donetasks;
-	}
+    public List<TaskDetails> getDoingtasks() {
+        return doingtasks;
+    }
 
-	public void init() {
-		log.debug("initalizing...");
-		if (!FacesContext.getCurrentInstance().isPostback()) {
-			retrieveAllTasks();
-		}
-	}
+    public List<TaskDetails> getDonetasks() {
+        return donetasks;
+    }
 
-	private void retrieveAllTasks() {
-		log.debug("retriveing all tasks...");
-		this.todotasks = findTasksByStatus(Status.TODO);
-		this.doingtasks = findTasksByStatus(Status.DOING);
-		this.donetasks = findTasksByStatus(Status.DONE);
-	}
+    public void init() {
+        log.log(Level.INFO,"initalizing...");
+        if (!FacesContext.getCurrentInstance().isPostback()) {
+            retrieveAllTasks();
+        }
+    }
 
-	private List<TaskDetails> findTasksByStatus(Status status) {
-		List<TaskDetails> taskList = new ArrayList<TaskDetails>();
-		List<Task> tasks = taskRepository.findByStatus(status, new Sort(Direction.DESC, "lastModifiedDate"));
+    private void retrieveAllTasks() {
+        log.log(Level.INFO,"retriveing all tasks...");
+        this.todotasks = findTasksByStatus(Status.TODO);
+        this.doingtasks = findTasksByStatus(Status.DOING);
+        this.donetasks = findTasksByStatus(Status.DONE);
+    }
 
-		for (Task task : tasks) {
-			TaskDetails details = new TaskDetails();
-			details.setId(task.getId());
-			details.setName(task.getName());
-			details.setDescription(task.getDescription());
-			details.setCreatedDate(task.getCreatedDate());
-			details.setLastModifiedDate(task.getLastModifiedDate());
-			taskList.add(details);
-		}
+    private List<TaskDetails> findTasksByStatus(Status status) {
+        List<TaskDetails> taskList = new ArrayList<TaskDetails>();
+        List<Task> tasks = taskRepository.findByStatus(status);
 
-		return taskList;
-	}
+        for (Task task : tasks) {
+            TaskDetails details = new TaskDetails();
+            details.setId(task.getId());
+            details.setName(task.getName());
+            details.setDescription(task.getDescription());
+            details.setCreatedDate(task.getCreatedDate());
+            details.setLastModifiedDate(task.getLastModifiedDate());
+            taskList.add(details);
+        }
 
-	public void deleteTask(Long id) {
+        return taskList;
+    }
 
-		log.debug("delete task of id@" + id);
+    public void deleteTask(Long id) {
 
-		Task task = taskRepository.findOne(id);
+        log.log(Level.INFO,"delete task of id@" + id);
 
-		if (task == null) {
-			throw new TaskNotFoundException(id);
-		}
+        Task task = taskRepository.findById(id);
 
-		taskRepository.delete(id);
+        if (task == null) {
+            throw new TaskNotFoundException(id);
+        }
 
-		// retrieve all tasks
-		retrieveAllTasks();
-		
-		FacesMessage deleteInfo= new FacesMessage(FacesMessage.SEVERITY_WARN, "Task is deleted!",  "Task is deleted!");
-		FacesContext.getCurrentInstance().addMessage(null, deleteInfo);
-	}
+        taskRepository.deleteById(id);
 
-	public void markTaskDoing(Long id) {
-		log.debug("changing task DONG @" + id);
+        // retrieve all tasks
+        retrieveAllTasks();
 
-		Task task = taskRepository.findOne(id);
+        FacesMessage deleteInfo = new FacesMessage(FacesMessage.SEVERITY_WARN, "Task is deleted!", "Task is deleted!");
+        FacesContext.getCurrentInstance().addMessage(null, deleteInfo);
+    }
 
-		if (task == null) {
-			throw new TaskNotFoundException(id);
-		}
+    public void markTaskDoing(Long id) {
+        log.log(Level.INFO,"changing task DONG @" + id);
 
-		task.setStatus(Status.DOING);
+        Task task = taskRepository.findById(id);
 
-		taskRepository.save(task);
+        if (task == null) {
+            throw new TaskNotFoundException(id);
+        }
 
-		// retrieve all tasks
-		retrieveAllTasks();
-	}
+        task.setStatus(Status.DOING);
 
-	public void markTaskDone(Long id) {
-		log.debug("changing task DONE @" + id);
+        taskRepository.save(task);
 
-		Task task = taskRepository.findOne(id);
+        // retrieve all tasks
+        retrieveAllTasks();
+    }
 
-		if (task == null) {
-			throw new TaskNotFoundException(id);
-		}
+    public void markTaskDone(Long id) {
+        log.log(Level.INFO,"changing task DONE @" + id);
 
-		task.setStatus(Status.DONE);
+        Task task = taskRepository.findById(id);
 
-		taskRepository.save(task);
+        if (task == null) {
+            throw new TaskNotFoundException(id);
+        }
 
-		// retrieve all tasks
-		retrieveAllTasks();
+        task.setStatus(Status.DONE);
 
-	}
+        taskRepository.save(task);
+
+        // retrieve all tasks
+        retrieveAllTasks();
+
+    }
 
 }

@@ -1,63 +1,65 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
+import com.hantsylabs.example.ee8.mvc.domain.Task;
+import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
+import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
 import java.io.Serializable;
+import java.util.logging.Level;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
-
-import com.hantsylabs.example.spring.jpa.TaskRepository;
-import com.hantsylabs.example.spring.model.Task;
+import java.util.logging.Logger;
+import javax.faces.view.ViewScoped;
 
 /**
- * 
+ *
  * @author hantsy
  *
  */
 @Named("viewTaskAction")
-@Scope(value = "view")
+@ViewScoped()
 public class ViewTaskDetailsAction implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = LoggerFactory.getLogger(ViewTaskDetailsAction.class);
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	private TaskRepository taskRepository;
+    @Inject
+    Logger log;
 
-	@NotNull
-	private Long taskId;
+    @Inject
+    private TaskRepository taskRepository;
 
-	private Task task;
+    @NotNull
+    private Long taskId;
 
-	public void init() {
+    private Task task;
 
-		log.debug(" get task of id @" + taskId);
+    public void init() {
 
-		task = taskRepository.findOne(taskId);
+        log.log(Level.INFO," get task of id @" + taskId);
 
-		if (task == null) {
-			throw new TaskNotFoundException(taskId);
-		}
+        task = taskRepository.findById(taskId);
 
-	}
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
 
-	public Long getTaskId() {
-		return taskId;
-	}
+    }
 
-	public void setTaskId(Long taskId) {
-		this.taskId = taskId;
-	}
+    public Long getTaskId() {
+        return taskId;
+    }
 
-	public Task getTask() {
-		return task;
-	}
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
+    }
+
+    public Task getTask() {
+        return task;
+    }
 
 }

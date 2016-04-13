@@ -3,66 +3,61 @@ package com.hantsylabs.example.ee8.mvc.web;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 public class TaskDetails implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Long id;
-	private String name;
-	private String description;
-	private Date createdDate;
-	private Date lastModifiedDate;
-	
-	
-	public Long getId() {
-		return id;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private String name;
+    private String description;
+    private Date createdDate;
+    private Date lastModifiedDate;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
+    public Date getCreatedDate() {
+        return createdDate;
+    }
 
-	public Date getLastModifiedDate() {
-		return lastModifiedDate;
-	}
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
-	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
-	}
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskDetails{" + "id=" + id + ", name=" + name + ", description=" + description + ", createdDate=" + createdDate + ", lastModifiedDate=" + lastModifiedDate + '}';
+    }
 
 }
