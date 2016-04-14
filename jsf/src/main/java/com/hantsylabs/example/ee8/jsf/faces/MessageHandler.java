@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.mvc.faces;
+package com.hantsylabs.example.ee8.jsf.faces;
 
 import java.util.ArrayList;
 import java.util.Iterator;

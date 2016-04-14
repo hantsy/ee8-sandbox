@@ -1,9 +1,10 @@
-package com.hantsylabs.example.ee8.mvc.web;
+package com.hantsylabs.example.ee8.jsf.web;
 
-import com.hantsylabs.example.ee8.mvc.domain.Task;
-import com.hantsylabs.example.ee8.mvc.domain.Task.Status;
-import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
-import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
+import com.hantsylabs.example.ee8.jsf.domain.Task;
+import com.hantsylabs.example.ee8.jsf.domain.Task.Status;
+import com.hantsylabs.example.ee8.jsf.domain.TaskNotFoundException;
+import com.hantsylabs.example.ee8.jsf.domain.TaskRepository;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,10 +24,10 @@ import javax.faces.view.ViewScoped;
  */
 @Named("taskHome")
 @ViewScoped()
-public class TaskHome {
+public class TaskHome implements Serializable{
 
-    @Inject
-    Logger log;
+    //@Inject
+    private static final  Logger log= Logger.getLogger(TaskHome.class.getName());
 
     @Inject
     private TaskRepository taskRepository;
@@ -64,25 +65,27 @@ public class TaskHome {
     }
 
     private List<TaskDetails> findTasksByStatus(Status status) {
-        List<TaskDetails> taskList = new ArrayList<TaskDetails>();
+        List<TaskDetails> taskList = new ArrayList<>();
         List<Task> tasks = taskRepository.findByStatus(status);
 
-        for (Task task : tasks) {
+        tasks.stream().map((task) -> {
             TaskDetails details = new TaskDetails();
             details.setId(task.getId());
             details.setName(task.getName());
             details.setDescription(task.getDescription());
             details.setCreatedDate(task.getCreatedDate());
             details.setLastModifiedDate(task.getLastModifiedDate());
+            return details;
+        }).forEach((details) -> {
             taskList.add(details);
-        }
+        });
 
         return taskList;
     }
 
     public void deleteTask(Long id) {
 
-        log.log(Level.INFO,"delete task of id@" + id);
+        log.log(Level.INFO, "delete task of id@{0}", id);
 
         Task task = taskRepository.findById(id);
 
@@ -100,7 +103,7 @@ public class TaskHome {
     }
 
     public void markTaskDoing(Long id) {
-        log.log(Level.INFO,"changing task DONG @" + id);
+        log.log(Level.INFO, "changing task DONG @{0}", id);
 
         Task task = taskRepository.findById(id);
 
@@ -110,14 +113,14 @@ public class TaskHome {
 
         task.setStatus(Status.DOING);
 
-        taskRepository.save(task);
+        taskRepository.update(task);
 
         // retrieve all tasks
         retrieveAllTasks();
     }
 
     public void markTaskDone(Long id) {
-        log.log(Level.INFO,"changing task DONE @" + id);
+        log.log(Level.INFO, "changing task DONE @{0}", id);
 
         Task task = taskRepository.findById(id);
 
@@ -127,7 +130,7 @@ public class TaskHome {
 
         task.setStatus(Status.DONE);
 
-        taskRepository.save(task);
+        taskRepository.update(task);
 
         // retrieve all tasks
         retrieveAllTasks();

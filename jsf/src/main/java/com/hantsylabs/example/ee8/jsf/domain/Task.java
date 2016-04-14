@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hantsylabs.example.ee8.mvc.domain;
+package com.hantsylabs.example.ee8.jsf.domain;
 
-import static com.hantsylabs.example.ee8.mvc.domain.Task.Status.TODO;
+import static com.hantsylabs.example.ee8.jsf.domain.Task.Status.TODO;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.glassfish:javax.faces:2.3.0-m05">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/javax.faces/2.3.0-m05/javax.faces-2.3.0-m05.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/javax.faces/2.3.0-m05/javax.faces-2.3.0-m05-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/javax.faces/2.3.0-m05/javax.faces-2.3.0-m05-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

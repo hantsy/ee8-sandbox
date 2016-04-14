@@ -1,8 +1,8 @@
-package com.hantsylabs.example.ee8.mvc.web;
+package com.hantsylabs.example.ee8.jsf.web;
 
-import com.hantsylabs.example.ee8.mvc.domain.Task;
-import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
-import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
+import com.hantsylabs.example.ee8.jsf.domain.Task;
+import com.hantsylabs.example.ee8.jsf.domain.TaskNotFoundException;
+import com.hantsylabs.example.ee8.jsf.domain.TaskRepository;
 import java.io.Serializable;
 import java.util.logging.Level;
 
@@ -27,8 +27,8 @@ public class ViewTaskDetailsAction implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    @Inject
-    Logger log;
+    //@Inject
+    private static final  Logger log= Logger.getLogger(ViewTaskDetailsAction.class.getName());
 
     @Inject
     private TaskRepository taskRepository;

@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.mvc.web;
+package com.hantsylabs.example.ee8.jsf.web;
 
 import java.io.Serializable;
 import java.util.Date;

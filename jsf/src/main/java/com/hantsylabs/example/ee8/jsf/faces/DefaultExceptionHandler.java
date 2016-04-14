@@ -1,7 +1,7 @@
-package com.hantsylabs.example.ee8.mvc.faces;
+package com.hantsylabs.example.ee8.jsf.faces;
 
-import com.hantsylabs.example.ee8.mvc.domain.TaskNotFoundException;
-
+import com.hantsylabs.example.ee8.jsf.domain.TaskNotFoundException;
+import com.sun.faces.context.FacesFileNotFoundException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,12 +13,11 @@ import javax.faces.context.ExceptionHandlerWrapper;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
-import javax.inject.Inject;
 
 public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
 
-    @Inject
-    Logger log;
+    //@Inject
+    private static final  Logger log= Logger.getLogger(DefaultExceptionHandler.class.getName());
 
     private ExceptionHandler wrapped;
 
@@ -52,13 +51,13 @@ public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
                 }
             }
 
-//            if (t instanceof FacesFileNotFoundException || t instanceof TaskNotFoundException) {
-//                try {
-//                    handleNotFoundException((Exception) t);
-//                } finally {
-//                    events.remove();
-//                }
-//            }
+            if (t instanceof FacesFileNotFoundException || t instanceof TaskNotFoundException) {
+                try {
+                    handleNotFoundException((Exception) t);
+                } finally {
+                    events.remove();
+                }
+            }
             log.log(Level.INFO, "ExceptionHandlder end.");
             getWrapped().handle();
         }

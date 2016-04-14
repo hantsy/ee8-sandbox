@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.mvc.faces;
+package com.hantsylabs.example.ee8.jsf.faces;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +9,8 @@ import javax.faces.event.PhaseListener;
 import javax.inject.Inject;
 
 public class RequestLoggingPhaseListener implements PhaseListener {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     Logger log;

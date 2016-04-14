@@ -1,5 +1,5 @@
 
-package com.hantsylabs.example.ee8.mvc.faces;
+package com.hantsylabs.example.ee8.jsf.faces;
 
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;

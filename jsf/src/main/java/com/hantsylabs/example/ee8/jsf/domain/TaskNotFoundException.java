@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.mvc.domain;
+package com.hantsylabs.example.ee8.jsf.domain;
 
 public class TaskNotFoundException extends RuntimeException {
 

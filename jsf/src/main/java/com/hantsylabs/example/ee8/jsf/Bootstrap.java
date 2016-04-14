@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hantsylabs.example.ee8.mvc;
+package com.hantsylabs.example.ee8.jsf;
 
-import com.hantsylabs.example.ee8.mvc.domain.Task;
-import com.hantsylabs.example.ee8.mvc.domain.TaskRepository;
+import com.hantsylabs.example.ee8.jsf.domain.Task;
+import com.hantsylabs.example.ee8.jsf.domain.TaskRepository;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
