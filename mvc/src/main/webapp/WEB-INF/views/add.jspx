@@ -33,10 +33,13 @@
             <c:url value="/webjars/bootstrap-material-design/0.3.0/css/material.min.css" var="material_css_url" />
             <c:url value="/webjars/bootstrap-material-design/0.3.0/css/ripples.min.css" var="ripples_css_url" />
             <c:url value="/webjars/bootstrap-material-design/0.3.0/css/roboto.min.css" var="roboto_css_url" />
+            <c:url value="/webjars/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.css" var="datepicker_css_url" />
+
             <link href="${material_css_url}" rel="stylesheet"/>
             <link href="${ripples_css_url}" rel="stylesheet"/>
             <link href="${roboto_css_url}" rel="stylesheet"/>
-
+            <link href="${datepicker_css_url}" rel="stylesheet"/>
+ 
             <c:url value="/resources/css/main.css" var="main_css_url" />
             <link href="${main_css_url}" rel="stylesheet" />
 
@@ -65,17 +68,17 @@
                         <p>${flashMessage.text}</p>
                     </div>
                 </c:if>
-                
-                 <c:if test="${not empty errors}">
-                     <c:forEach items="${errors.errors}" var="error">
-                    <div class="alert alert-danger alert-dismissible"
-                         role="alert">
-                        <button type="button" class="close" data-dismiss="alert"
-                                aria-label="Close">
-                            <span aria-hidden="true"><![CDATA[&times;]]></span>
-                        </button>
-                        <p>${error.field}: ${error.message}</p>
-                    </div>
+
+                <c:if test="${not empty errors}">
+                    <c:forEach items="${errors.errors}" var="error">
+                        <div class="alert alert-danger alert-dismissible"
+                             role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true"><![CDATA[&times;]]></span>
+                            </button>
+                            <p>${error.field}: ${error.message}</p>
+                        </div>
                     </c:forEach>
                 </c:if>
 
@@ -91,19 +94,29 @@
                             <div
                                 class="form-group">
                                 <label class="control-label" for="name">Task Name:</label>
-                                <input id="name" name="name" type="text" class="form-control"/>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="Task title"/>
                                 <div class="help-block">
                                     <jsp:text/>
                                 </div>
                             </div>
-                             <div
+                            <div
                                 class="form-group">
                                 <label class="control-label" for="description">Task Description:</label>
-                                <textarea id="description" name="description" class="form-control" rows="8"><jsp:text/></textarea>
+                                <textarea id="description" name="description" class="form-control" placeholder="Task description" rows="8"><jsp:text/></textarea>
                                 <div class="help-block">
                                     <jsp:text/>
                                 </div>
                             </div>
+
+                            <div
+                                class="form-group">
+                                <label class="control-label" for="description">Due Date:</label>
+                                <input type="text" id="duedate" name="duedate" class="form-control"
+                                       placeholder="Due date"/>
+                                <div class="help-block">
+                                    <jsp:text/>
+                                </div>
+                            </div>    
 
                             <div class="form-group">
                                 <button id="submitTask" type="submit" class="btn btn-lg btn-primary">Add Task</button>
@@ -124,6 +137,8 @@
             <c:url value="/webjars/bootstrap/3.3.5/js/bootstrap.min.js" var="bootstrap_js_url" />
             <c:url value="/webjars/bootstrap-material-design/0.3.0/js/material.min.js" var="material_js_url" />
             <c:url value="/webjars/bootstrap-material-design/0.3.0/js/ripples.min.js" var="ripples_js_url" />
+            <c:url value="/webjars/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.js" var="datepicker_js_url" />
+           
             <script type="text/javascript" src="${jquery_js_url}">
                 /** stop autoclosing **/
             </script>
@@ -136,8 +151,21 @@
             <script type="text/javascript" src="${ripples_js_url}">
                 ${null}
             </script>
+            <script type="text/javascript" src="${datepicker_js_url}">
+                ${null}
+            </script>
             <script>
                 $.material.init();
+            </script>
+            <script type="application/javascript">
+                $(function () {
+                    $('#duedate').datepicker({
+                    orientation: "top auto",
+                    format: "yyyy-mm-dd",
+                    clearBtn: true,
+                    autoclose: true
+                    });
+                });
             </script>
         </body>
     </html>

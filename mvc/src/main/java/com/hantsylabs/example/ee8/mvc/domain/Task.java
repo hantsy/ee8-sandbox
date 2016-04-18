@@ -7,6 +7,7 @@ package com.hantsylabs.example.ee8.mvc.domain;
 
 import static com.hantsylabs.example.ee8.mvc.domain.Task.Status.TODO;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
@@ -61,6 +62,10 @@ public class Task implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status = TODO;
+    
+    //@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "due_date")
+    private LocalDate dueDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date")
@@ -118,6 +123,14 @@ public class Task implements Serializable {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -125,8 +138,6 @@ public class Task implements Serializable {
         hash = 67 * hash + Objects.hashCode(this.name);
         hash = 67 * hash + Objects.hashCode(this.description);
         hash = 67 * hash + Objects.hashCode(this.status);
-        hash = 67 * hash + Objects.hashCode(this.createdDate);
-        hash = 67 * hash + Objects.hashCode(this.lastModifiedDate);
         return hash;
     }
 
@@ -152,12 +163,6 @@ public class Task implements Serializable {
             return false;
         }
         if (this.status != other.status) {
-            return false;
-        }
-        if (!Objects.equals(this.createdDate, other.createdDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastModifiedDate, other.lastModifiedDate)) {
             return false;
         }
         return true;

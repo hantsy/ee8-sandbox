@@ -1,6 +1,7 @@
 package com.hantsylabs.example.ee8.mvc.web;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,10 @@ public class TaskForm implements Serializable {
     @FormParam("description")
     private String description;
 
+    @NotNull
+    @FormParam("duedate")
+    private LocalDate dueDate;
+
     public String getName() {
         return name;
     }
@@ -37,11 +42,20 @@ public class TaskForm implements Serializable {
         this.description = description;
     }
 
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + Objects.hashCode(this.description);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.description);
+        hash = 97 * hash + Objects.hashCode(this.dueDate);
         return hash;
     }
 
@@ -63,12 +77,15 @@ public class TaskForm implements Serializable {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
+        if (!Objects.equals(this.dueDate, other.dueDate)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "TaskForm{" + "name=" + name + ", description=" + description + '}';
+        return "TaskForm{" + "name=" + name + ", description=" + description + ", dueDate=" + dueDate + '}';
     }
 
 }

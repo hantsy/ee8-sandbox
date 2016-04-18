@@ -19,7 +19,7 @@ import javax.ws.rs.ext.Provider;
  * @author hantsy
  */
 @Provider
-public class TaskNotFoundExceptionMapper implements ExceptionMapper<TaskNotFoundException>{
+public class CustomExceptionMapper implements ExceptionMapper<TaskNotFoundException>{
     
     @Inject Logger log;
     

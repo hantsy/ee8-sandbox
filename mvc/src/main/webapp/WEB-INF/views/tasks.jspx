@@ -216,7 +216,7 @@
             </script>
             <script>
                 $.material.init();
-            </script>
+            </script>           
         </body>
     </html>
 </jsp:root>
