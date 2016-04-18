@@ -87,6 +87,7 @@
                     <div class="col-md-12">
                         <c:url var="formActionUrl" value="/mvc/tasks"/>
                         <form id="form" name="form" role="form" class="form" action="${formActionUrl}" method="post">
+                            <input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>
                             <div
                                 class="form-group">
                                 <label class="control-label" for="name">Task Name:</label>

@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.mvc.Models;
 import javax.mvc.Viewable;
 import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.ConstraintViolation;
@@ -84,7 +85,7 @@ public class TaskController {
     }
 
     @POST
-    //@CsrfValid
+    @CsrfValid
     @ValidateOnExecution(type = ExecutableType.NONE)
     public Response save(@Valid @BeanParam TaskForm form) {
         log.log(Level.INFO, "saving new task @{0}", form);
