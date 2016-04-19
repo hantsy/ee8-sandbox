@@ -105,6 +105,7 @@ public class TaskController {
         Task task = new Task();
         task.setName(form.getName());
         task.setDescription(form.getDescription());
+        task.setDueDate(form.getDueDate());
 
         taskRepository.save(task);
 

@@ -62,7 +62,7 @@ public class Task implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status = TODO;
-    
+
     //@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "due_date")
     private LocalDate dueDate;
@@ -130,7 +130,7 @@ public class Task implements Serializable {
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -170,7 +170,9 @@ public class Task implements Serializable {
 
     @PrePersist
     public void prePersist() {
-        this.setCreatedDate(new Date());
+        final Date date = new Date();
+        this.setCreatedDate(date);
+        this.setLastModifiedDate(date);
     }
 
     @PreUpdate

@@ -5,8 +5,8 @@
     Author     : hantsy
 -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
           xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
-
     <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>
     <jsp:output omit-xml-declaration="yes" />
 
@@ -79,6 +79,8 @@
                             <dd>${details.description}</dd>
                             <dt>Status:</dt>
                             <dd>${details.status}</dd>
+                            <dt>Due date:</dt>
+                            <dd>${formatters.formatDate(details.dueDate)}</dd>
                             <dt>Created At:</dt>
                             <dd>${details.createdDate}</dd>
                             <dt>Last Modified At:</dt>
