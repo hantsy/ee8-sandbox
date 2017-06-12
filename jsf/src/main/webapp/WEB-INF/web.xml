@@ -4,9 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <context-param>
+    <!--    <context-param>
         <param-name>com.sun.faces.expressionFactory</param-name>
         <param-value>com.sun.el.ExpressionFactoryImpl</param-value>
+    </context-param>-->
+    
+    <context-param>
+        <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>0</param-value> <!-- No Cache  -->
     </context-param>
 
     <context-param>

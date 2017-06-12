@@ -28,7 +28,7 @@ public class ViewTaskDetailsAction implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //@Inject
-    private static final  Logger log= Logger.getLogger(ViewTaskDetailsAction.class.getName());
+    private static final Logger log = Logger.getLogger(ViewTaskDetailsAction.class.getName());
 
     @Inject
     private TaskRepository taskRepository;
@@ -40,7 +40,7 @@ public class ViewTaskDetailsAction implements Serializable {
 
     public void init() {
 
-        log.log(Level.INFO," get task of id @" + taskId);
+        log.log(Level.INFO, " get task of id @" + taskId);
 
         task = taskRepository.findById(taskId);
 

@@ -24,10 +24,10 @@ import javax.faces.view.ViewScoped;
  */
 @Named("taskHome")
 @ViewScoped()
-public class TaskHome implements Serializable{
+public class TaskHome implements Serializable {
 
     //@Inject
-    private static final  Logger log= Logger.getLogger(TaskHome.class.getName());
+    private static final Logger log = Logger.getLogger(TaskHome.class.getName());
 
     @Inject
     private TaskRepository taskRepository;
@@ -50,15 +50,16 @@ public class TaskHome implements Serializable{
         return donetasks;
     }
 
+   // @PostConstruct
     public void init() {
-        log.log(Level.INFO,"initalizing...");
+        log.log(Level.INFO, "initalizing TaskHome...");
         if (!FacesContext.getCurrentInstance().isPostback()) {
             retrieveAllTasks();
         }
     }
 
     private void retrieveAllTasks() {
-        log.log(Level.INFO,"retriveing all tasks...");
+        log.log(Level.INFO, "retriveing all tasks...");
         this.todotasks = findTasksByStatus(Status.TODO);
         this.doingtasks = findTasksByStatus(Status.DOING);
         this.donetasks = findTasksByStatus(Status.DONE);

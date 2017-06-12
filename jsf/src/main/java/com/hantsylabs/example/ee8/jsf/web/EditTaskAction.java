@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 
 /**
@@ -54,6 +55,7 @@ public class EditTaskAction implements Serializable {
         this.task = task;
     }
 
+    //@PostConstruct
     public void init() {
         log.log(Level.INFO, " get task of id @{0}", taskId);
 
