@@ -114,7 +114,7 @@
                                 <artifactItem>
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
+                                    <version>${version.javaee-api}</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>
