@@ -12,3 +12,4 @@ nb*.xml
 *.war
 *.ear
 target/
+/cdi-se/nbproject/

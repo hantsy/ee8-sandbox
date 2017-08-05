@@ -20,7 +20,22 @@
     </context-param>
     
     <context-param>
+        <param-name>javax.faces.validator.ENABLE_VALIDATE_WHOLE_BEAN</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <context-param>
         <param-name>javax.faces.ENABLE_CDI_RESOLVER_CHAIN</param-name>
         <param-value>true</param-value>
     </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.ENABLE_WEBSOCKET_ENDPOINT</param-name>
+        <param-value>true</param-value>
+    </context-param> 
+    
+<!--    <context-param>
+        <param-name>javax.faces.DISABLE_FACESSERVLET_TO_XHTML</param-name>
+        <param-value>true</param-name>
+    </context-param>-->
 </web-app>

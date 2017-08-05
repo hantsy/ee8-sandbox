@@ -35,7 +35,7 @@
         
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
+            <artifactId>javaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
       
@@ -43,7 +43,7 @@
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>2.3.1</version>
+            <version>2.3.2</version>
             <scope>provided</scope>
         </dependency>
     
