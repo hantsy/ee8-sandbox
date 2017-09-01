@@ -50,12 +50,9 @@ public class TaskHome implements Serializable {
         return donetasks;
     }
 
-   // @PostConstruct
     public void init() {
         log.log(Level.INFO, "initalizing TaskHome...");
-        //if (!FacesContext.getCurrentInstance().isPostback()) {
-            retrieveAllTasks();
-        //}
+        retrieveAllTasks();
     }
 
     private void retrieveAllTasks() {
