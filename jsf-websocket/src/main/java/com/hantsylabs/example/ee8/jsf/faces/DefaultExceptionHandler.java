@@ -1,6 +1,5 @@
 package com.hantsylabs.example.ee8.jsf.faces;
 
-import com.hantsylabs.example.ee8.jsf.domain.TaskNotFoundException;
 import com.sun.faces.context.FacesFileNotFoundException;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -16,18 +15,10 @@ import javax.faces.event.ExceptionQueuedEventContext;
 
 public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
 
-    //@Inject
     private static final Logger log = Logger.getLogger(DefaultExceptionHandler.class.getName());
 
-    private ExceptionHandler wrapped;
-
     public DefaultExceptionHandler(ExceptionHandler wrapped) {
-        this.wrapped = wrapped;
-    }
-
-    @Override
-    public ExceptionHandler getWrapped() {
-        return this.wrapped;
+        super(wrapped);
     }
 
     @Override
@@ -39,27 +30,27 @@ public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
             ExceptionQueuedEvent event = events.next();
             ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event.getSource();
             Throwable t = context.getException();
-            log.log(Level.INFO, "Exception@" + t);
+            log.log(Level.INFO, "Exception@" + t.getClass().getName());
             log.log(Level.INFO, "ExceptionHandlder began.");
             log.log(Level.INFO, "t instanceof FacesException@" + (t instanceof FacesException));
             //   log.log(Level.INFO, "t instanceof FacesFileNotFoundException@" + (t instanceof FacesFileNotFoundException));
+            t.printStackTrace();
             if (t instanceof ViewExpiredException) {
                 try {
                     handleViewExpiredException((ViewExpiredException) t);
                 } finally {
                     events.remove();
                 }
-            }
-
-            if (t instanceof FacesFileNotFoundException || t instanceof TaskNotFoundException) {
+            } else if (t instanceof FacesFileNotFoundException) {
                 try {
                     handleNotFoundException((Exception) t);
                 } finally {
                     events.remove();
                 }
+            } else {
+                log.log(Level.INFO, "ExceptionHandlder end.");
+                getWrapped().handle();
             }
-            log.log(Level.INFO, "ExceptionHandlder end.");
-            getWrapped().handle();
         }
 
     }

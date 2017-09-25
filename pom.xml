@@ -6,13 +6,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Java EE 8 sandbox</name>
+    <name>Java EE 8 Sample</name>
 
     <modules>
         <module>mvc</module>
         <module>mvc-facelets</module>
         <module>jsf</module>
         <module>cdi-se</module>
+		<module>jsf-websocket</module>
     </modules>    
 
     <properties>

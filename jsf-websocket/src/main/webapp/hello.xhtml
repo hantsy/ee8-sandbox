@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf/"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <f:view contentType="text/html" encoding="UTF-8">
+        <ui:debug hotkey="x" rendered="#{facesContext.application.projectStage == 'Development'}" />
+        <h:head>
+            <title>JSF 2.3: Websocket Sample</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+        </h:head>
+        <h:body>
+
+            <div id="message">
+            </div>
+            <hr />
+            <h:form id="form" prependId="false">
+
+                <f:websocket channel="push" onmessage="onMessage" />
+
+                <div class="form-group">
+                    <h:commandButton 
+                        id="sendMessage" 
+                        type="submit"
+                        styleClass="btn btn-lg btn-primary"
+                        action="#{pushBean.sendMessage()}" value="Send Message">
+                        <f:ajax />
+                    </h:commandButton>
+                </div>
+
+                <h:panelGroup layout="message2Input" styleClass="form-group">
+                    <h:outputLabel for="message2Input"> Say hi to JSF Websocket</h:outputLabel>
+                    <h:inputText 
+                        styleClass="form-control" 
+                        id="message2Input" 
+                        value="#{pushBean.message}"/>
+                </h:panelGroup>
+                Input text:#{pushBean.message}
+                <div>
+                    <h:commandButton 
+                        id="sendMessage2" 
+                        type="button"
+                        action="#{pushBean.sendMessage2()}" 
+                        value="Send Message from Input">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandButton>
+                </div>
+                
+                <div>
+                    <button 
+                        id="sendMessage3" 
+                        type="button"
+                        jsf:action="#{pushBean.sendMessage2()}" >
+                        HTML 5 Button
+                        <f:ajax event="click" execute="@form" render="@all"/>
+                    </button>
+                </div>
+            </h:form>
+
+            <script type="text/javascript">
+                function onMessage(e) {
+                    console.log('jsf push message:' + e);
+                    document.getElementById("message").innerHTML = e;
+                }
+            </script>    
+        </h:body> 
+    </f:view>
+</html>
