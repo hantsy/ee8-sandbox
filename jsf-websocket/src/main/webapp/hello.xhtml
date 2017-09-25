@@ -24,17 +24,15 @@
                     <h:commandButton 
                         id="sendMessage" 
                         type="submit"
-                        styleClass="btn btn-lg btn-primary"
                         action="#{pushBean.sendMessage()}" value="Send Message">
                         <f:ajax />
                     </h:commandButton>
                 </div>
 
-                <h:panelGroup layout="message2Input" styleClass="form-group">
-                    <h:outputLabel for="message2Input"> Say hi to JSF Websocket</h:outputLabel>
+                <h:panelGroup layout="block">
+                    <h:outputLabel for="messageInput"> Say hi to JSF Websocket</h:outputLabel>
                     <h:inputText 
-                        styleClass="form-control" 
-                        id="message2Input" 
+                        id="messageInput" 
                         value="#{pushBean.message}"/>
                 </h:panelGroup>
                 Input text:#{pushBean.message}
