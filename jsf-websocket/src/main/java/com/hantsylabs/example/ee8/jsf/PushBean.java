@@ -23,7 +23,7 @@ import javax.inject.Named;
 @Named("pushBean")
 public class PushBean implements Serializable {
     
-    private final Logger log = Logger.getLogger(PushBean.class.getName());
+    private static final Logger LOG = Logger.getLogger(PushBean.class.getName());
     
     @Inject
     @Push
@@ -32,7 +32,7 @@ public class PushBean implements Serializable {
     String message;
     
     public void sendMessage() {
-        log.log(Level.INFO, "send push message");
+        LOG.log(Level.INFO, "send push message");
         this.sendPushMessage("hello");
     }
     

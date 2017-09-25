@@ -12,8 +12,9 @@
         <module>mvc</module>
         <module>mvc-facelets</module>
         <module>jsf</module>
+        <module>jsf-websocket</module>
         <module>cdi-se</module>
-		<module>jsf-websocket</module>
+        <module>cdi-event</module>	
     </modules>    
 
     <properties>

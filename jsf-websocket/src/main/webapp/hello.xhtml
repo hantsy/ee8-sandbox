@@ -41,7 +41,7 @@
                         id="sendMessage2" 
                         type="button"
                         action="#{pushBean.sendMessage2()}" 
-                        value="Send Message from Input">
+                        value="Send Message from Input Box">
                         <f:ajax execute="@form" render="@all"/>
                     </h:commandButton>
                 </div>
@@ -51,7 +51,7 @@
                         id="sendMessage3" 
                         type="button"
                         jsf:action="#{pushBean.sendMessage2()}" >
-                        HTML 5 Button
+                        Send Message from Input Box(HTML 5 Button)
                         <f:ajax event="click" execute="@form" render="@all"/>
                     </button>
                 </div>

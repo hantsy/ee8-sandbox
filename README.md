@@ -1,4 +1,4 @@
-# ee8-sandbox
+#  A quick glance at Java EE 8
 
 Java EE 8 sandbox.
 
