@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.event.Event;
+import javax.enterprise.event.NotificationOptions;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,13 +21,13 @@ import javax.inject.Named;
 @ViewScoped
 @Named("eventBean")
 public class EventBean implements Serializable {
-    
+
     private static final Logger LOG = Logger.getLogger(EventBean.class.getName());
-    
+
     @Inject
     Event<Message> event;
-    
-    private String  message;
+
+    private String message;
 
     public String getMessage() {
         return message;
@@ -35,9 +36,22 @@ public class EventBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    public void fireEvent(){
+
+    public void fireEvent() {
         LOG.log(Level.INFO, "fire event async...");
-        event.fireAsync(new Message(this.message));
+        event.fireAsync(new Message(this.message)).whenCompleteAsync((m, t) -> {
+            System.out.println("message sent:" + m);
+            System.out.println("error when message was sent:" + t);
+        });
+    }
+
+    public void fireEventOptions() {
+        LOG.log(Level.INFO, "fire event async...");
+        event.fireAsync(
+                new Message(this.message),
+                NotificationOptions.builder()
+                        .set("weld.async.notification.timeout", 1000)
+                        .build()
+        );
     }
 }
