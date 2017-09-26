@@ -14,7 +14,9 @@
         <module>jsf</module>
         <module>jsf-websocket</module>
         <module>cdi-se</module>
-        <module>cdi-event</module>	
+        <module>cdi-event-async</module>	
+		<module>cdi-event-priority</module>
+		<module>jsonb</module>
     </modules>    
 
     <properties>

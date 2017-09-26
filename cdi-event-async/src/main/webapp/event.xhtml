@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf/"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <f:view contentType="text/html" encoding="UTF-8">
+        <ui:debug hotkey="x" rendered="#{facesContext.application.projectStage == 'Development'}" />
+        <h:head>
+            <title>CDI 2.0: Async Events</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+        </h:head>
+        <h:body>
+            <h1>CDI 2.0: Async Events and Priority</h1>
+            <h:form id="form" prependId="false">
+
+                <h:panelGroup layout="block">
+                    <h:outputLabel for="messageInput">Message Payload:</h:outputLabel>
+                    <h:inputText 
+                        id="messageInput" 
+                        value="#{eventBean.message}"/>
+                </h:panelGroup>
+                <div>Message content:#{eventBean.message}</div>
+                
+                <h:panelGroup layout="block" rendered="#{eventBean.notification!=null}">#{eventBean.notification}</h:panelGroup>
+                <div>
+                    <h:commandButton 
+                        id="sendMessage2" 
+                        type="button"
+                        action="#{eventBean.fireEvent()}" 
+                        value="Send Message">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandButton>
+                </div>
+
+            </h:form> 
+        </h:body> 
+    </f:view>
+</html>
