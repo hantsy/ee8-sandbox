@@ -386,11 +386,11 @@
                                 <GLASSFISH_HOME>${session.executionRootDirectory}/target/payara5</GLASSFISH_HOME>
                             </environmentVariables>
                             <!-- This needs tuning -->
-<!--                            <systemPropertyVariables>
-                                <glassfishRemote_gfHome>${session.executionRootDirectory}/target/payara50</glassfishRemote_gfHome>
-                                <javaEEServer>payara-remote</javaEEServer>
+                            <systemPropertyVariables>
+<!--                                <glassfishRemote_gfHome>${session.executionRootDirectory}/target/payara50</glassfishRemote_gfHome>
+                                <javaEEServer>payara-remote</javaEEServer>-->
                                 <arquillian.launch>payara</arquillian.launch>
-                            </systemPropertyVariables>-->
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>

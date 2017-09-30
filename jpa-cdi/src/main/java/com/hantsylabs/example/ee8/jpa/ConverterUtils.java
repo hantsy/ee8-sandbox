@@ -17,7 +17,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class ConverterUtils {
 
-    public String listToString(List tags) {
+    public String listToString(List<String> tags) {
         return join(",", tags);
     }
 
