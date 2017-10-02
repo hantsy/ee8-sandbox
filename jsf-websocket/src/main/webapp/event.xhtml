@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <h:head>
+        <title>JSF 2.3: Websocket Sample</title>
+        <script>
+            function onMessage(message, channel, event) {
+                console.log('Client onMessage listener: message: ' + message + ', channel:' + channel + ", event:" + event);
+                document.getElementById("message").innerHTML = message;
+            }
+            function onOpen(channel) {
+                console.log('Client onOpen listener:  channel:' + channel);
+            }
+            function onClose(code, channel, event) {
+                console.log('Client onClose listener: code: ' + code + ', channel:' + channel + ", event:" + event);
+
+                if (code === -1) {
+                    // Web sockets not supported by client.
+                } else if (code === 1000) {
+                    // Normal close (as result of expired session or view).
+                } else {
+                    // Abnormal close reason (as result of an error).
+                }
+            }
+        </script>    
+    </h:head>
+    <h:body>
+        <h1>JSF 2.3: Websocket Events </h1>
+        <div id="message" />
+        <hr />
+        <h:form id="form">
+            <div>
+                <h:commandButton onclick="jsf.push.open('eventChannel')" value="Open Event Channel">
+                    <f:ajax />
+                </h:commandButton>
+                <h:commandButton onclick="jsf.push.close('eventChannel')" value="Close Event Channel">
+                    <f:ajax />
+                </h:commandButton>
+            </div>
+            <h:commandButton 
+                id="sendMessage" 
+                type="submit"
+                action="#{eventBean.sendMessage}" value="Send Message">
+                <f:ajax />
+            </h:commandButton>
+        </h:form>
+
+        <f:websocket id="eventChannel" 
+                     channel="eventChannel" 
+                     onopen="onOpen" 
+                     onclose="onClose" 
+                     onmessage="onMessage" 
+                     connected="false"/>
+    </h:body> 
+</html>

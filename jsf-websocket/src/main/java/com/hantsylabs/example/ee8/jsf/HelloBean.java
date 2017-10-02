@@ -20,14 +20,14 @@ import javax.inject.Named;
  * @author hantsy
  */
 @ViewScoped
-@Named("pushBean")
-public class PushBean implements Serializable {
+@Named("helloBean")
+public class HelloBean implements Serializable {
     
-    private static final Logger LOG = Logger.getLogger(PushBean.class.getName());
+    private static final Logger LOG = Logger.getLogger(HelloBean.class.getName());
     
     @Inject
     @Push
-    PushContext push;
+    PushContext helloChannel;
     
     String message;
     
@@ -37,7 +37,7 @@ public class PushBean implements Serializable {
     }
     
     private void sendPushMessage(Object message) {
-        push.send("" + message + " at " + LocalDateTime.now());
+        helloChannel.send("" + message + " at " + LocalDateTime.now());
     }
     
     public String getMessage() {

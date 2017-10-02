@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <h:head>
+        <title>JSF 2.3: Websocket Sample</title>
+        <script>
+            function onMessage(message, channel, event) {
+                var m = "message:" + message + ", channel:" + channel + ", event:" + event;
+                console.log(m);
+                var ul = document.getElementById("messages");
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(m));
+                ul.appendChild(li);
+            }
+        </script>    
+    </h:head>
+    <h:body>
+        <h1>JSF 2.3: Websocket Scopes </h1>
+        <ul id="messages" >
+        </ul>
+        <hr />
+        <h:form id="form">
+            <div>
+                <h:commandButton 
+                    id="pushToApplicationChannel" 
+                    action="#{scopeBean.pushToApplicationChannel()}" value="pushToApplicationChannel">
+                    <f:ajax />
+                </h:commandButton>
+            </div>
+
+            <div>
+                <h:commandButton 
+                    id="pushToSessionChannel" 
+                    action="#{scopeBean.pushToSessionChannel()}" value="pushToSessionChannel">
+                    <f:ajax />
+                </h:commandButton>
+            </div>
+
+            <div>
+                <h:commandButton 
+                    id="pushToViewChannel" 
+                    action="#{scopeBean.pushToViewChannel()}" value="pushToViewChannel">
+                    <f:ajax />
+                </h:commandButton>
+            </div>
+
+            <div>
+                <h:commandButton 
+                    id="pushToUserChannel" 
+                    action="#{scopeBean.pushToUserChannel()}" value="pushToUserChannel">
+                    <f:ajax />
+                </h:commandButton>
+            </div>
+
+            <div>
+                <h:commandButton 
+                    id="pushToMultiUsersChannel" 
+                    action="#{scopeBean.pushToMultiUsersChannel()}" value="pushToMultiUsersChannel">
+                    <f:ajax />
+                </h:commandButton>
+            </div>
+
+        </h:form>
+
+        <f:websocket channel="applicationChannel" scope="application" onmessage="onMessage" />
+        <f:websocket channel="sessionChannel" scope="session" onmessage="onMessage" />
+        <f:websocket channel="viewChannel" scope="view" onmessage="onMessage" />
+        <f:websocket channel="userChannel" user="hantsy" onmessage="onMessage" />
+        <f:websocket channel="userChannel" user="user" onmessage="onMessage" />
+    </h:body> 
+</html>

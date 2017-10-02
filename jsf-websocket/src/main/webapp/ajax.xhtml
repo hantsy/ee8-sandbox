@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <h:head>
+        <title>JSF 2.3: Websocket Sample</title> 
+    </h:head>
+    <h:body>
+        <h1>JSF 2.3: Websocket and Ajax </h1>
+        <h:panelGroup id="messagePanel" layout="block">
+            <ul>
+                <ui:repeat value="#{ajaxBean.messages}" var="m">
+                    <li>#{m}</li>
+                </ui:repeat>
+            </ul>
+        </h:panelGroup>
+
+        <h:form id="form">
+            <h:commandButton 
+                id="sendMessage" 
+                action="#{ajaxBean.sendMessage()}" value="Send Ajax Message">
+                <f:ajax execute="@this" render="@this"/>
+            </h:commandButton>
+            
+            <h:commandButton 
+                id="sendCommandScriptMessage" 
+                action="#{ajaxBean.commandScriptExecuted()}" value="Send Message to  commandScriptChannel">
+                <f:ajax execute="@this" render="@this"/>
+            </h:commandButton>
+        </h:form>
+        <h:form>
+            <f:websocket channel="ajaxPushChannel" scope="view">
+                <f:ajax event="ajaxEvent" listener="#{ajaxBean.ajaxPushed}" render=":messagePanel" />
+            </f:websocket>
+        </h:form>
+
+        <f:websocket channel="commandScriptChannel" scope="view" onmessage="onCommandScript"/>
+        <h:form>
+            <h:commandScript name="onCommandScript" action="#{ajaxBean.commandScriptExecuted()}" render=":messagePanel"/>
+        </h:form>
+    </h:body> 
+</html>
