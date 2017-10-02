@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.push.Push;
 import javax.faces.push.PushContext;
@@ -42,7 +43,7 @@ public class AjaxBean implements Serializable {
 
     private List<String> messages = new ArrayList<>();
 
-    public void ajaxPushed(AjaxBehaviorEvent e) {
+    public void ajaxPushed(AjaxBehaviorEvent e) throws AbortProcessingException{
         LOG.log(Level.INFO, "ajax pushed: " + e.toString());
         
         messages.add("ajaxListenerEvent is sent at: " + LocalDateTime.now());
