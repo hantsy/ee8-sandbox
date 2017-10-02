@@ -22,19 +22,19 @@
         <h:form id="form">
             <h:commandButton 
                 id="sendMessage" 
-                action="#{ajaxBean.sendMessage()}" value="Send Ajax Message">
-                <f:ajax execute="@this" render="@this"/>
-            </h:commandButton>
-            
-            <h:commandButton 
-                id="sendCommandScriptMessage" 
-                action="#{ajaxBean.commandScriptExecuted()}" value="Send Message to  commandScriptChannel">
-                <f:ajax execute="@this" render="@this"/>
+                action="#{ajaxBean.sendMessage()}" 
+                value="Send Ajax Message">
+                <f:ajax/>
             </h:commandButton>
         </h:form>
         <h:form>
-            <f:websocket channel="ajaxPushChannel" scope="view">
-                <f:ajax event="ajaxEvent" listener="#{ajaxBean.ajaxPushed}" render=":messagePanel" />
+            <f:websocket channel="ajaxChannel" scope="view">
+                <f:ajax event="ajaxEvent" render=":messagePanel" />
+            </f:websocket>
+        </h:form>
+        <h:form>
+            <f:websocket channel="ajaxListenerChannel" scope="view">
+                <f:ajax event="ajaxListenerEvent" listener="#{ajaxBean.ajaxPushed}" render=":messagePanel" />
             </f:websocket>
         </h:form>
 

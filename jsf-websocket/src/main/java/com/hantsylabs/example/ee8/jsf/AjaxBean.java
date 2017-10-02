@@ -27,10 +27,14 @@ import javax.inject.Named;
 public class AjaxBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(AjaxBean.class.getName());
+    
+    @Inject
+    @Push
+    PushContext ajaxChannel;
 
     @Inject
     @Push
-    PushContext ajaxPushChannel;
+    PushContext ajaxListenerChannel;
 
     @Inject
     @Push
@@ -41,9 +45,9 @@ public class AjaxBean implements Serializable {
     public void ajaxPushed(AjaxBehaviorEvent e) {
         LOG.log(Level.INFO, "ajax pushed: " + e.toString());
         
-        messages.add("AjaxPushed is sent at: " + LocalDateTime.now());
+        messages.add("ajaxListenerEvent is sent at: " + LocalDateTime.now());
         
-        ajaxPushChannel.send("ajaxEvent");
+        ajaxListenerChannel.send("ajaxListenerEvent");
     }
 
     public void commandScriptExecuted() {
@@ -57,9 +61,9 @@ public class AjaxBean implements Serializable {
     public void sendMessage() {
 //        LOG.log(Level.INFO, "ajax pushed by button: " + e.toString());
         
-        messages.add("Ajax message is sent at: " + LocalDateTime.now());
+        messages.add("ajaxEvent is sent at: " + LocalDateTime.now());
         
-        ajaxPushChannel.send("ajaxEvent");
+        ajaxChannel.send("ajaxEvent");
     }
 
     public List<String> getMessages() {
