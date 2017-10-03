@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.rest;
+package com.hantsylabs.example.ee8.jsonb;
 
 import java.io.Serializable;
 import java.util.Objects;

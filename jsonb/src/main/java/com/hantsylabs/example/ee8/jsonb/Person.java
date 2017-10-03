@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.rest;
+package com.hantsylabs.example.ee8.jsonb;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,45 +12,26 @@ import java.util.Objects;
  */
 public class Person implements Serializable {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private LocalDate birthDate;
     private List<PhoneNumber> phoneNumbers = new ArrayList<>();
 
     public Person() {
     }
 
-    public Person(Long id, String firstName, String lastName, LocalDate birthDate) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person(String name, LocalDate birthDate) {
+        this.name = name;
         this.birthDate = birthDate;
     }
 
-    public Long getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+       
 
     public LocalDate getBirthDate() {
         return birthDate;
@@ -71,8 +52,7 @@ public class Person implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.firstName);
-        hash = 97 * hash + Objects.hashCode(this.lastName);
+        hash = 97 * hash + Objects.hashCode(this.name);
         hash = 97 * hash + Objects.hashCode(this.birthDate);
         return hash;
     }
@@ -89,10 +69,7 @@ public class Person implements Serializable {
             return false;
         }
         final Person other = (Person) obj;
-        if (!Objects.equals(this.firstName, other.firstName)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastName, other.lastName)) {
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.birthDate, other.birthDate)) {
@@ -103,7 +80,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", phoneNumbers=" + phoneNumbers + '}';
+        return "Person{" + " name=" + name  + ", birthDate=" + birthDate + ", phoneNumbers=" + phoneNumbers + '}';
     }
 
 }

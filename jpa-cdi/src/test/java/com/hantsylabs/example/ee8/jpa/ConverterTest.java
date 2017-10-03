@@ -32,7 +32,7 @@ public class ConverterTest {
     public static Archive<?> createDeployment() {
         JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
                 //domain.support package.
-                .addClasses(Post.class, ConverterUtils.class, TagsConverter.class, Fixtures.class)
+                .addClasses(Post.class, ConverterUtils.class, TagsConverter.class, Fixtures.class, Resources.class)
                 .addAsManifestResource("META-INF/test-persistence.xml", "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         // System.out.println(archive.toString(true));
