@@ -21,9 +21,21 @@
 
         <h:form id="form">
             <h:commandButton 
-                id="sendMessage" 
-                action="#{ajaxBean.sendMessage()}" 
-                value="Send Ajax Message">
+                id="pushToAjaxChannel" 
+                action="#{ajaxBean.pushToAjaxChannel()}" 
+                value="pushToAjaxChannel">
+                <f:ajax/>
+            </h:commandButton>
+            <h:commandButton 
+                id="pushToAjaxListenerChannel" 
+                action="#{ajaxBean.pushToAjaxListenerChannel()}" 
+                value="pushToAjaxListenerChannel">
+                <f:ajax/>
+            </h:commandButton>
+            <h:commandButton 
+                id="pushToCommandScriptChannel" 
+                action="#{ajaxBean.pushToCommandScriptChannel()}" 
+                value="pushToCommandScriptChannel">
                 <f:ajax/>
             </h:commandButton>
         </h:form>

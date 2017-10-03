@@ -44,27 +44,26 @@ public class AjaxBean implements Serializable {
     private List<String> messages = new ArrayList<>();
 
     public void ajaxPushed(AjaxBehaviorEvent e) throws AbortProcessingException{
-        LOG.log(Level.INFO, "ajax pushed: " + e.toString());
-        
+        LOG.log(Level.INFO, "ajax pushed: " + e.toString());  
         messages.add("ajaxListenerEvent is sent at: " + LocalDateTime.now());
-        
-        ajaxListenerChannel.send("ajaxListenerEvent");
     }
 
     public void commandScriptExecuted() {
         LOG.log(Level.INFO, "commandScriptExecuted pushed.");
-        
         messages.add("commandScriptExecuted message is sent at: " + LocalDateTime.now());
-        
-        commandScriptChannel.send("onCommandScript");
     }
     
-    public void sendMessage() {
-//        LOG.log(Level.INFO, "ajax pushed by button: " + e.toString());
-        
-        messages.add("ajaxEvent is sent at: " + LocalDateTime.now());
-        
+    public void pushToAjaxChannel() {  
+        messages.add("ajaxEvent is sent at: " + LocalDateTime.now());    
         ajaxChannel.send("ajaxEvent");
+    }
+    
+    public void pushToAjaxListenerChannel(){ 
+        ajaxListenerChannel.send("ajaxListenerEvent");
+    }
+    
+     public void pushToCommandScriptChannel() {
+        commandScriptChannel.send("onCommandScript");
     }
 
     public List<String> getMessages() {
