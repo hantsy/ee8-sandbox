@@ -16,6 +16,7 @@
         <module>cdi-se</module>
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>
+		<module>cdi-dynamic-bean</module>
         <module>jsonb</module>
 		<module>bean-validation</module>
         <module>jpa-cdi</module>
