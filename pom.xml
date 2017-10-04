@@ -17,6 +17,7 @@
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>
         <module>jsonb</module>
+		<module>bean-validation</module>
         <module>jpa-cdi</module>
         <module>jpa-datetime</module>
         <module>jpa-stream</module>

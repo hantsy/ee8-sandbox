@@ -40,7 +40,7 @@ import org.junit.runner.RunWith;
  * @author hantsy
  */
 @RunWith(Arquillian.class)
-public class JsonbTests {
+public class JsonbTest {
 
     @Deployment(name = "test")
     public static Archive<?> createDeployment() {
@@ -55,7 +55,8 @@ public class JsonbTests {
                 .addAsLibraries(extraJars)
                 .addPackage(Person.class.getPackage())
                 //.addAsManifestResource("META-INF/test-persistence.xml", "persistence.xml")
-                .addAsResource("persons.json", "persons.json")
+                .addAsResource("persons.json")
+                .addAsResource("person.json")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         // System.out.println(archive.toString(true));
         return archive;
@@ -99,12 +100,16 @@ public class JsonbTests {
 
         Jsonb jsonMapper = JsonbBuilder.create();
 
+        Person person = jsonMapper.fromJson(JsonbTest.class.getResourceAsStream("/person.json"), Person.class);
+
+        assertEquals("Duke", person.getName());
+
         Type type = new ArrayList<Person>() {
         }
                 .getClass()
                 .getGenericSuperclass();
 
-        List<Person> persons = jsonMapper.fromJson(JsonbTests.class.getResourceAsStream("/persons.json"), type);
+        List<Person> persons = jsonMapper.fromJson(JsonbTest.class.getResourceAsStream("/persons.json"), type);
 
         assertTrue(persons.size() == 2);
     }

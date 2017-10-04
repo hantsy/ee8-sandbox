@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Duke",
+        "birthDate": "1995-05-23",
+        "phoneNumbers": [
+            {
+                "number": "100000",
+                "type": "HOME"
+            }, {
+                "number": "200000",
+                "type": "OFFICE"
+            }
+        ]
+    }, 
+
+    {
+        "name": "Hantsy",
+        "birthDate": "1978-01-01",
+        "phoneNumbers": [
+            {
+                "number": "13812345678",
+                "type": "HOME"
+            }
+        ]
+    }
+]
+    
