@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <h:head>
+        <title>JSF 2.3: Websocket Sample</title>
+        <script>
+            function onMessage(message, channel, event) {
+                console.log('jsf push message::' + message + ", channel ::" + channel + ", event::" + event);
+                document.getElementById("message").innerHTML = message;
+            }
+        </script>    
+    </h:head>
+    <h:body>
+        <h1>JSF 2.3: Java 8 DateTime(JSR310) </h1>
+        <hr />
+        <h:panelGroup layout="block" id="messageFromInputBox">
+            LocalDate is :: #{dateTimeBean.localDate} <br />
+            LocalTime is :: #{dateTimeBean.localTime} <br />
+            LocalDateTime is :: #{dateTimeBean.localDateTime} <br />
+            OffsetTime is :: #{dateTimeBean.offsetTime} <br />
+            OffsetDateTime is :: #{dateTimeBean.offsetDateTime} <br />
+            ZonedDateTime is :: #{dateTimeBean.zonedDateTime} <br />
+        </h:panelGroup>
+        <h:form id="form">
+            <div>
+                <h:outputLabel for="localDate" value="LocalDate" />
+                <h:inputText 
+                    id="localDate" 
+                    value="#{dateTimeBean.localDate}">
+                    <f:convertDateTime type="localDate"/>
+                </h:inputText>    
+            </div>
+            <div>
+                <h:outputLabel for="localTime" value="LocalTime" />
+                <h:inputText 
+                    id="localTime" 
+                    value="#{dateTimeBean.localTime}">
+                    <f:convertDateTime type="localTime"/>
+                </h:inputText>    
+            </div>
+            <div>
+                <h:outputLabel for="localDateTime" value="LocalDateTime" />
+                <h:inputText 
+                    id="localDateTime" 
+                    value="#{dateTimeBean.localDateTime}">
+                    <f:convertDateTime type="localDateTime"/>
+                </h:inputText>    
+            </div>
+            
+            <div>
+                <h:outputLabel for="offsetTime" value="OffsetTime" />
+                <h:inputText 
+                    id="offsetTime" 
+                    value="#{dateTimeBean.offsetTime}">
+                    <f:convertDateTime type="offsetTime"/>
+                </h:inputText>    
+            </div>
+            
+            <div>
+                <h:outputLabel for="offsetDateTime" value="OffsetDateTime" />
+                <h:inputText 
+                    id="offsetDateTime" 
+                    value="#{dateTimeBean.offsetDateTime}">
+                    <f:convertDateTime type="offsetDateTime"/>
+                </h:inputText>    
+            </div>
+            
+             <div>
+                <h:outputLabel for="zonedDateTime" value="ZonedDateTime" />
+                <h:inputText 
+                    id="zonedDateTime" 
+                    value="#{dateTimeBean.zonedDateTime}">
+                    <f:convertDateTime type="zonedDateTime"/>
+                </h:inputText>    
+            </div>
+            
+            <div>
+                <h:commandButton 
+                    id="saveDateTime" 
+                    value="Save DateTime">
+                    <f:ajax execute="@form" render=":messageFromInputBox" />
+                </h:commandButton>
+            </div>
+        </h:form>
+
+    </h:body> 
+</html>

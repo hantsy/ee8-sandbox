@@ -13,6 +13,7 @@
         <module>mvc-facelets</module>
         <module>jsf</module>
         <module>jsf-websocket</module>
+		<module>jsf-datetime</module>
         <module>cdi-se</module>
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>
