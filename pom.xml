@@ -15,6 +15,8 @@
         <module>jsf-websocket</module>
 		<module>jsf-datetime</module>
 		<module>jsf-validwholebean</module>
+		<module>jsf-postrenderview-event</module>
+		<module>jsf-converter</module>
         <module>cdi-se</module>
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>
