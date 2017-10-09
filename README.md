@@ -1,16 +1,16 @@
 #  A quick glance at Java EE 8
 
-In these days, the most exciting news is Java 9 reaches GA, as well as the release of the long-waiting Java EE 8 and Glassfish v5. For more details, please read the official announcement [Java EE 8 and GlassFish 5.0 Released!](https://blogs.oracle.com/theaquarium/java-ee-8-is-final-and-glassfish-50-is-released) from Oracle blog portal.
+The past September was a busy month, the most exciting news is Java 9 reaches GA, as well as the release of the long-waiting Java EE 8 and Glassfish v5. For more details, please read the official announcement [Java EE 8 and GlassFish 5.0 Released!](https://blogs.oracle.com/theaquarium/java-ee-8-is-final-and-glassfish-50-is-released) from Oracle blog portal.
 
 ## A brief intro of Java EE 8
 
-The world was changed so quickly, after Java EE 7 was born in 2013, Cloud service and microservice became more and more popular. Java EE had to embrace the changes, so a lot of perspectives are proposed to be brought into Java EE 8, including Configuration, Load Balance, Circuit breaker, Service Registry and Discovery, programnatic Security API, MVC etc. 
+The world changes so quickly, after Java EE 7 was born in 2013, cloud service and microservice became more and more popular. Java EE had to embrace the changes, so a lot of perspectives are proposed to be brought into Java EE 8, including Configuration, Load Balance, Circuit breaker, Service Registry and Discovery, programnatic Security API, MVC etc. 
 
-But the road to Java EE 8 is not straight, most of proposed specfications are moved out of Java EE 8 in development progress. In a long period, the development of some specifications were paused for some unknown reasons. 
+But the road to Java EE 8 is not straight, most of proposed specfications are moved out of Java EE 8 finally. And in a long period, the development of some specifications were paused for some reasons. 
 
 To save Java EE, the [Java community](https://javaee-guardians.io/) created a [petition](https://www.change.org/p/larry-ellison-tell-oracle-to-move-forward-java-ee-as-a-critical-part-of-the-global-it-industry) and wished Oracle can move forward Java EE more quickly.
 
-At the same time, IBM, Redhat and other Java communities launched a new [MicroProfile](http://microprofile.io) which targets ligthweight Java EE and Cloud computing service. Now it is a project under Eclipse foundation.
+At the same time, IBM, Redhat and other Java communities launched a new [MicroProfile](http://microprofile.io) which targets ligthweight Java EE and cloud computing service. Now it is a project under Eclipse foundation.
 
 Although the Java EE 8 way is a little hard, finally it is released to the public. 
 
