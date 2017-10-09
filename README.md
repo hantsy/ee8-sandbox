@@ -22,7 +22,7 @@ Java EE 8 should be the last version released by Oracle(and Sun).
 
 Like me, some developers are a little disappointed about Java EE 8(JSR 366) , even complain it comes a little late. But no doubt there are still lots of new features and improvements which are valuable to update ourselves.
 
-Tow new specifications were introduced in Java EE 8.
+There tow new specifications were introduced in Java EE 8.
 
 * JSR 375 – Java EE Security API 1.0
 * JSR 367 – The Java API for JSON Binding (JSON-B) 1.0
@@ -40,7 +40,7 @@ Some specifications have been updated to align with Java 8 and CDI or involved a
 * JSR 356 – Java API for WebSocket 1.1
 * JSR 919 – JavaMail 1.6
 
-Other specifications such as JMS, Batch have no updates in this version.
+The other specifications such as JMS, Batch have no updates in this version.
 
 Unfortunately, MVC(JSR 371) is vetoed in the final stage, but it is still existed as a community based specification. And JCache(JSR 107) which had missed the last train of Java EE 7, and also lost its attractiveness in Java EE 8.
   
