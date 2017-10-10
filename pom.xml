@@ -18,6 +18,7 @@
 		<module>jsf-postrenderview-event</module>
 		<module>jsf-converter</module>
 		<module>jsf-managedproperty</module>
+		<module>jsf-data-model</module>
         <module>cdi-se</module>
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>

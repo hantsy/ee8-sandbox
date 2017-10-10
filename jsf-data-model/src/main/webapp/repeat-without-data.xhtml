@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <f:view>
+        <h:head>
+            <title>JSF 2.3: DataModel Sample</title>
+        </h:head>
+        <h:body>
+            <h1>JSF 2.3: UIRepeat without Data Collection</h1>
+
+            <ui:repeat begin="0" end="10" step="2" var="i">
+                #{i}<br />
+            </ui:repeat>
+
+        </h:body> 
+    </f:view>
+</html>
