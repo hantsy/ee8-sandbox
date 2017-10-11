@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.inject.Model;
-import javax.faces.annotation.FacesConfig;
 import javax.inject.Inject;
 
 /**
@@ -17,7 +16,6 @@ import javax.inject.Inject;
  * @author hantsy
  */
 @Model
-@FacesConfig(version = FacesConfig.Version.JSF_2_3)
 public class IterableBean {
     
     @Inject Logger LOG;
