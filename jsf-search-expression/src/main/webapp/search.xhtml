@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <f:view>
+        <h:head>
+            <title>JSF 2.3: Search Expression Sample</title>
+        </h:head>
+        <h:body id="body">
+            <h1>JSF 2.3: Component Search Expression Sample</h1>
+            <h:panelGroup id="panelgroup">
+                <h:form id="form">
+                    <h:button id="button" outcome="foo2">Button foo</h:button>
+                    <h:commandButton id="commandButton" action="#{backingBean.foo()}" value="invoke foo"/>
+                    <h:outputText id="body" value="body"/>
+                </h:form>
+            </h:panelGroup>
+        </h:body> 
+    </f:view>
+</html>
