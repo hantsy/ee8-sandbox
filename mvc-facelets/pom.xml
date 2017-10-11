@@ -4,7 +4,7 @@
     <artifactId>ee8-mvc-facelets</artifactId>
     <packaging>war</packaging>
 
-    <name>Simple MVC Sample(Facelets)</name>
+    <name>MVC 1.0(cancelled): Sample(Facelets)</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>

@@ -4,7 +4,7 @@
     <artifactId>ee8-mvc</artifactId>
     <packaging>war</packaging>
 
-    <name>Simple MVC Sample</name>
+    <name>MVC 1.0(cancelled): Sample</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>

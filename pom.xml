@@ -13,19 +13,20 @@
         <module>mvc-facelets</module>
         <module>jsf</module>
         <module>jsf-websocket</module>
-		<module>jsf-datetime</module>
-		<module>jsf-validwholebean</module>
-		<module>jsf-postrenderview-event</module>
-		<module>jsf-converter</module>
-		<module>jsf-managedproperty</module>
-		<module>jsf-data-model</module>
+        <module>jsf-datetime</module>
+        <module>jsf-validwholebean</module>
+        <module>jsf-postrenderview-event</module>
+        <module>jsf-converter</module>
+        <module>jsf-managedproperty</module>
+        <module>jsf-data-model</module>
         <module>cdi-se</module>
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>
-		<module>cdi-dynamic-bean</module>
-		<module>cdi-intercept-producer</module>
+        <module>cdi-dynamic-bean</module>
+        <module>cdi-intercept-producer</module>
         <module>jsonb</module>
-		<module>bean-validation</module>
+        <module>jsonp</module>
+        <module>bean-validation</module>
         <module>jpa-cdi</module>
         <module>jpa-datetime</module>
         <module>jpa-stream</module>

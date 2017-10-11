@@ -1,0 +1,13 @@
+{
+    "name": "Duke",
+    "birthDate": "1995-05-23",
+    "phoneNumbers": [
+        {
+            "number": "100000",
+            "type": "HOME"
+        }, {
+            "number": "200000",
+            "type": "OFFICE"
+        }
+    ]
+}
