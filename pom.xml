@@ -19,7 +19,7 @@
         <module>jsf-converter</module>
         <module>jsf-managedproperty</module>
         <module>jsf-data-model</module>
-		<module>jsf-search-expression</module>
+        <module>jsf-search-expression</module>
         <module>cdi-se</module>
         <module>cdi-event-async</module>	
         <module>cdi-event-priority</module>
@@ -31,9 +31,11 @@
         <module>jpa-cdi</module>
         <module>jpa-datetime</module>
         <module>jpa-stream</module>
-		<module>servlet-push</module>
-		<module>servlet-mapping</module>
-		<module>servlet-trailer</module>
+        <module>servlet-push</module>
+        <module>servlet-mapping</module>
+        <module>servlet-trailer</module>
+        <module>jaxrs-sse</module>
+        <module>jaxrs-client</module>
     </modules>    
 
     <properties>
@@ -133,7 +135,6 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
         </dependency>
         
         <!-- Test dependencies which can be used in sub-modules -->
@@ -340,13 +341,21 @@
     <!-- Profiles for the application servers against which the samples are run -->
     <profiles>
         
-        <!-- ###  PAYARA  ### -->
         <profile>
-            <id>payara-managed</id>
+            <id>default</id>
             
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            
+        </profile>
+        <!-- ###  PAYARA  ### -->
+        <profile>
+            <id>payara-managed</id>
+            
+            <!--            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>-->
             
             <dependencies>
                 

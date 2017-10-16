@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ee8-servlet-trailer</artifactId>
+    <artifactId>ee8-jaxrs-sse</artifactId>
     <packaging>war</packaging>
 
-    <name>Servlet 4.0: Trailer</name>
+    <name>JAXRS 2.1: Server Sent Event</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>
@@ -21,11 +21,18 @@
     
     <dependencies>
         
+        <!--
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>
-
+        -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        
     </dependencies>
        
 </project>
