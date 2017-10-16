@@ -33,6 +33,7 @@
         <module>jpa-stream</module>
 		<module>servlet-push</module>
 		<module>servlet-mapping</module>
+		<module>servlet-trailer</module>
     </modules>    
 
     <properties>

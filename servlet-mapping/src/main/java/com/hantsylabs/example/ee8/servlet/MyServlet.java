@@ -9,9 +9,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.PushBuilder;
 
 /**
  * refer: http://arjan-tijms.omnifaces.org/2016/04/servlet-40s-mapping-api-previewed-in.html
@@ -20,9 +20,8 @@ import javax.servlet.http.PushBuilder;
  */
 @WebServlet(name = "MyServlet",
         urlPatterns = {
-            "MyServlet",
             "/MyServlet",
-            "",
+            "/",
             "/path/*",
             "*.extension"
         }
@@ -30,7 +29,20 @@ import javax.servlet.http.PushBuilder;
 public class MyServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        
+          
+        HttpServletMapping mapping = request.getHttpServletMapping();
+         
+        response.getWriter()
+                .append("Mapping match:")
+                .append(mapping.getMappingMatch().name())
+                .append("\n")
+                .append("Match value:")
+                .append(mapping.getMatchValue())
+                .append("\n")
+                .append("Pattern:")
+                .append(mapping.getPattern());
     }
 }
