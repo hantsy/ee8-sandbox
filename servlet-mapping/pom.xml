@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ee8-servlet-push</artifactId>
+    <artifactId>ee8-servlet-mapping</artifactId>
     <packaging>war</packaging>
 
-    <name>Servlet 4.0: Http2 Server Push</name>
+    <name>Servlet 4.0: Runtime Discovery of Servlet Mappings</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>
