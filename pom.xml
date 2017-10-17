@@ -36,6 +36,7 @@
         <module>servlet-trailer</module>
         <module>jaxrs-sse</module>
         <module>jaxrs-client</module>
+		<module>jaxrs-async</module>
     </modules>    
 
     <properties>

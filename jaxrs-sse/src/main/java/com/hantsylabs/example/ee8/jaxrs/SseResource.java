@@ -17,7 +17,7 @@ import javax.ws.rs.sse.SseEventSink;
 /**
  *
  * see: https://www.infoq.com/news/2017/08/JAX-RS-2.1-released
- * 
+ *
  * @author hantsy
  */
 @Path("events")
@@ -26,7 +26,7 @@ public class SseResource {
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void getMessageQueue(@Context Sse sse, @Context SseEventSink eventSink) {
+    public void eventStream(@Context Sse sse, @Context SseEventSink eventSink) {
         // Resource method is invoked when a client subscribes to an event stream.
         // That implies that sending events will most likely happen from different
         // context - thread / event handler / etc, so common implementation of the
