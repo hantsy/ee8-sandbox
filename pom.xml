@@ -37,6 +37,7 @@
         <module>jaxrs-sse</module>
         <module>jaxrs-client</module>
 		<module>jaxrs-async</module>
+		<module>security-basic</module>
     </modules>    
 
     <properties>
