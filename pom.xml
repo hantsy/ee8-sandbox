@@ -39,6 +39,7 @@
         <module>jaxrs-async</module>
         <module>security-basic</module>
         <module>security-form</module>
+        <module>security-form-custom</module>
     </modules>    
 
     <properties>
