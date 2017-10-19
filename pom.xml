@@ -36,8 +36,9 @@
         <module>servlet-trailer</module>
         <module>jaxrs-sse</module>
         <module>jaxrs-client</module>
-		<module>jaxrs-async</module>
-		<module>security-basic</module>
+        <module>jaxrs-async</module>
+        <module>security-basic</module>
+        <module>security-form</module>
     </modules>    
 
     <properties>
