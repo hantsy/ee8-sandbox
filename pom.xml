@@ -41,6 +41,7 @@
         <module>security-form</module>
         <module>security-form-custom</module>
         <module>security-custom-auth</module>
+		<module>security-basic-db</module>
     </modules>    
 
     <properties>
