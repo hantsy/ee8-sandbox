@@ -11,7 +11,7 @@
     <modules>
         <module>mvc</module>
         <module>mvc-facelets</module>
-        <module>jsf</module>
+        <!--<module>jsf</module>-->
         <module>jsf-websocket</module>
         <module>jsf-datetime</module>
         <module>jsf-validwholebean</module>
