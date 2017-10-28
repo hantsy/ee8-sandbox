@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
  *
  * @author hantsy
  */
-@Path("mesages")
+@Path("messages")
 @RequestScoped
 public class MessageResource {
     

@@ -5,8 +5,10 @@
  */
 package com.hantsylabs.example.ee8.jaxrs;
 
+import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import javax.enterprise.event.Observes;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -50,5 +52,16 @@ public class BroadcastResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void broadcast(@FormParam("event") String event) {
         sseBroadcaster.broadcast(sse.newEvent(event));
+    }
+
+    public void eventStreamCdi(@Observes Message msg) {
+        sseBroadcaster.broadcast(
+                sse.newEventBuilder()
+                        .mediaType(MediaType.APPLICATION_JSON_TYPE)
+                        .id(UUID.randomUUID().toString())
+                        .name("message from cdi")
+                        .data(msg)
+                        .build()
+        );
     }
 }

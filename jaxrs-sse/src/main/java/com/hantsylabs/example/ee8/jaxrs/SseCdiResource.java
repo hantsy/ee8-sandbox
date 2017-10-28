@@ -26,17 +26,17 @@ import javax.ws.rs.sse.SseEventSink;
 @RequestScoped
 public class SseCdiResource {
 
-    @GET
-    @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void eventStreamCdi(@Context Sse sse, @Context SseEventSink eventSink, @Observes Message msg) {
-        eventSink.send(
-                sse.newEventBuilder()
-                        .mediaType(MediaType.APPLICATION_JSON_TYPE)
-                        .id(UUID.randomUUID().toString())
-                        .name("message from cdi")
-                        .data(msg)
-                        .build()
-        );
-    }
-    
+//    @GET
+//    @Produces(MediaType.SERVER_SENT_EVENTS)
+//    public void eventStreamCdi(@Context Sse sse, @Context SseEventSink eventSink, @Observes Message msg) {
+//        eventSink.send(
+//                sse.newEventBuilder()
+//                        .mediaType(MediaType.APPLICATION_JSON_TYPE)
+//                        .id(UUID.randomUUID().toString())
+//                        .name("message from cdi")
+//                        .data(msg)
+//                        .build()
+//        );
+//    }
+//    
 }
