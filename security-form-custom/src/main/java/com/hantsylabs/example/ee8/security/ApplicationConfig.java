@@ -6,17 +6,17 @@
 package com.hantsylabs.example.ee8.security;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition;
+import javax.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 
 /**
  *
  * @author hantsy
  */
-@FormAuthenticationMechanismDefinition(
+@CustomFormAuthenticationMechanismDefinition(
     loginToContinue = @LoginToContinue(
         loginPage="/login.faces",
-        errorPage=""
+        errorPage="" // DRAFT API - must be set to empty for now
     )
 )
 @ApplicationScoped
