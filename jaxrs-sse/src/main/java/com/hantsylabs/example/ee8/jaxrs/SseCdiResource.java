@@ -7,9 +7,11 @@ package com.hantsylabs.example.ee8.jaxrs;
 
 import java.util.UUID;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -26,17 +28,20 @@ import javax.ws.rs.sse.SseEventSink;
 @RequestScoped
 public class SseCdiResource {
 
-//    @GET
-//    @Produces(MediaType.SERVER_SENT_EVENTS)
-//    public void eventStreamCdi(@Context Sse sse, @Context SseEventSink eventSink, @Observes Message msg) {
-//        eventSink.send(
-//                sse.newEventBuilder()
-//                        .mediaType(MediaType.APPLICATION_JSON_TYPE)
-//                        .id(UUID.randomUUID().toString())
-//                        .name("message from cdi")
-//                        .data(msg)
-//                        .build()
-//        );
-//    }
-//    
+    @Inject
+    MessageHandler handler;
+
+    @GET
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public void eventStreamCdi(@Context Sse sse, @Context SseEventSink eventSink) {
+        handler.register(UUID.randomUUID().toString(), new SseRequest(sse, eventSink));
+    }
+    
+    
+    @DELETE
+    @Path("{uuid}")
+    public void deregister(@PathParam("uuid") String uuid) {
+        handler.deregister(uuid);
+    }
+
 }
