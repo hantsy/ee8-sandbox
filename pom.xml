@@ -39,7 +39,9 @@
         <module>jaxrs-async</module>
         <module>security-basic</module>
         <module>security-form</module>
-        <module>security-form-custom</module>
+        <module>security-custom-form</module>
+		<module>security-custom-form-db</module>
+		<module>security-custom-form-jsf22</module>
         <module>security-custom-auth</module>
 		<module>security-basic-db</module>
     </modules>    

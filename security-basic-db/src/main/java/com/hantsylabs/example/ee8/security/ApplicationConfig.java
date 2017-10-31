@@ -7,6 +7,7 @@ package com.hantsylabs.example.ee8.security;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
 import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
