@@ -11,7 +11,7 @@
     <modules>
         <module>mvc</module>
         <module>mvc-facelets</module>
-        <!--<module>jsf</module>-->
+        <module>jsf-compatible-mode-jsf22</module>
         <module>jsf-websocket</module>
         <module>jsf-datetime</module>
         <module>jsf-validwholebean</module>
@@ -38,12 +38,13 @@
         <module>jaxrs-client</module>
         <module>jaxrs-async</module>
         <module>security-basic</module>
+		<module>security-basic-db</module>
         <module>security-form</module>
+		<module>security-form-db</module>
         <module>security-custom-form</module>
 		<module>security-custom-form-db</module>
-		<module>security-custom-form-jsf22</module>
-        <module>security-custom-auth</module>
-		<module>security-basic-db</module>
+        <module>security-custom-auth</module>	
+		<module>security-custom-auth-db</module>				
     </modules>    
 
     <properties>
