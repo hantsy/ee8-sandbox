@@ -1,4 +1,4 @@
-package com.hantsylabs.example.ee8.security;
+package com.hantsylabs.example.ee8.jsf;
 
 import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hantsylabs.example.ee8.security;
+package com.hantsylabs.example.ee8.jsf;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -29,7 +29,7 @@ public class HelloBean {
     }
 
     public void sayHi() {
-        this.message = "Greeting at " + LocalDateTime.now();
+        this.message = this.message+ " received at " + LocalDateTime.now();
     }
 
     @Override

@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:jsf="http://xmlns.jcp.org/jsf"
->
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head/>
-    
+
     <h:messages />
-    
-    <body>
+
+    <h:body>
         <p>
             Hello JSF 2.3(JSF 2.2 Compatible Mode)
         </p>
-    
-         <form jsf:id="form">
+
+        <form jsf:id="form">
             <p>
-                <strong>Say Hi to JSF 2.3: </strong> 
+                <strong>Welcome to JSF 2.3 world: </strong> 
                 <div>#{helloBean.message}</div>
             </p>
             <p>
-                <input type="submit" value="Login" jsf:action="#{helloBean.sayHi()}" />
+                <strong>Message: </strong> 
+                <div><input type="text" jsf:id="message" jsf:value="#{helloBean.message}"></input></div>
+            </p>
+            <p>
+                <input type="submit" value="Say Hi to JSF" jsf:action="#{helloBean.sayHi()}" />
             </p>
         </form>
-    
-    </body>
+
+    </h:body>
 
 </html>
