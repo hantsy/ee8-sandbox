@@ -26,6 +26,6 @@ public class EventHandler implements Serializable {
     }
 
     public void onAnotherMessage(@Observes @Priority(value = 2) Message message) {
-        LOG.log(Level.INFO, "observes event  @Priority(value = 2):{0}", message);
+        LOG.log(Level.INFO, "observes event with @Priority(value = 2):{0}", message);
     }
 }

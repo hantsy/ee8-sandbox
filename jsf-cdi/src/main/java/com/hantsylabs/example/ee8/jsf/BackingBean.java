@@ -10,6 +10,7 @@ import javax.enterprise.inject.Model;
 import javax.faces.annotation.ViewMap;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.RequestCookieMap;
 import javax.inject.Inject;
 
 /**
@@ -32,7 +33,7 @@ public class BackingBean {
     ExternalContext externalContext;
 
     @Inject
-    @CookieMap
+    @RequestCookieMap
     Map<String, Object> cookieMap;
     
     @Inject

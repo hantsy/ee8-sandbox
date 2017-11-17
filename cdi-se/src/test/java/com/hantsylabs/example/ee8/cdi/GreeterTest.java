@@ -29,9 +29,7 @@ public class GreeterTest {
 
     public GreeterTest() {
     }
-
-    SeContainer container;
-
+    
     @Before
     public void setUp() {
     }

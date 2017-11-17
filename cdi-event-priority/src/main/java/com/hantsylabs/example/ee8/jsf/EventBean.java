@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.event.Event;
-import javax.enterprise.event.NotificationOptions;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,7 +37,7 @@ public class EventBean implements Serializable {
     }
 
     public void fireEvent() {
-        LOG.log(Level.INFO, "fire event async...");
+        LOG.log(Level.INFO, "firing event, message:{0}", this.message);
         event.fire(new Message(this.message));
     }
 

@@ -12,8 +12,11 @@
         <h:body>
             <h1>JSF 2.3: Iterable interface Sample</h1>
 
-            <h2> UIRepeat: Iterable interface</h2>
-            #{iterableBean.data}
+            <h2> h:dataTable Iterable interface</h2>
+            <h:dataTable var="entry" value="#{iterableBean.data}">
+                <h:column>#{entry}</h:column>
+            </h:dataTable>
+            <h2> ui:repeat Iterable interface</h2>
             <ui:repeat var="item" value="#{iterableBean.data}">
                 Item: #{item}
             </ui:repeat>

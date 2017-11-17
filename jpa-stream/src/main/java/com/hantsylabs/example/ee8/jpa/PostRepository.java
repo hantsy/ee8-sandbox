@@ -45,8 +45,8 @@ public class PostRepository extends AbstractRepository<Post, Long> {
 //
 //        return query.getResultList();
 //    }
-    
-    
+
+
     public List<Post> findByKeyword(String keyword) {
         return stream().filter(p -> p.getTitle().contains(keyword) || p.getContent().contains(keyword))
                 .collect(toList());
