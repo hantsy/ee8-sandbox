@@ -4,7 +4,7 @@
     <artifactId>ee8-security-custom-auth</artifactId>
     <packaging>war</packaging>
 
-    <name>Security 1.0: Custom HttpAuthenticationMechanism</name>
+    <name>Security 1.0: Custom HttpAuthenticationMechanism bean with custom IdentityStore bean</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>

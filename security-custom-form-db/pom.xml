@@ -4,7 +4,7 @@
     <artifactId>ee8-security-custom-form-db</artifactId>
     <packaging>war</packaging>
 
-    <name>Security 1.0: Custom Form Authentication with @DatabaseIdentityStoreDefinition</name>
+    <name>Security 1.0: @CustomFormAuthenticationMechanismDefinition with @DatabaseIdentityStoreDefinition</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>

@@ -4,7 +4,7 @@
     <artifactId>ee8-security-form</artifactId>
     <packaging>war</packaging>
 
-    <name>Security 1.0: Form Authentication</name>
+    <name>Security 1.0: @FormAuthenticationMechanismDefinition with custom IdentityStore bean</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>

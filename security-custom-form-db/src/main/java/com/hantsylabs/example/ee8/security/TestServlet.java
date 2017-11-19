@@ -7,8 +7,6 @@ package com.hantsylabs.example.ee8.security;
 
 import java.io.IOException;
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
-import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;

@@ -7,7 +7,6 @@ package com.hantsylabs.example.ee8.cdi;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -57,10 +56,10 @@ public class GreeterTest {
     public void testGreeter() {
         assertNotNull(greeter);
 
-        LOG.log(Level.INFO, "counter.getCount()::" + counter.getCount());
+        LOG.log(Level.INFO, "counter.getCount()::{0}", counter.getCount());
         //assertTrue(1 == counter.getCount());
         greeter.say("CDI 2.0");
-        LOG.log(Level.INFO, "counter.getCount() after called Greeter.say()::" + counter.getCount());
+        LOG.log(Level.INFO, "counter.getCount() after called Greeter.say()::{0}", counter.getCount());
         assertTrue(1 == counter.getCount());
     }
 }

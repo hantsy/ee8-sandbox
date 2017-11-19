@@ -4,7 +4,7 @@
     <artifactId>ee8-security-basic-db</artifactId>
     <packaging>war</packaging>
 
-    <name>Security 1.0: Basic Authentication with Database IdentityStore</name>
+    <name>Security 1.0: @BasicAuthenticationMechanismDefinition with @DatabaseIdentityStoreDefinition</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>
