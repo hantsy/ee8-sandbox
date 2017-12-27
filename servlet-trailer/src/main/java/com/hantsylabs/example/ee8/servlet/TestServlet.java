@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Copied from glassfish samples.
+ * 
  * This class illustrates HTTP trailer API in Servlet.
  *
  * @author Shing Wai Chan
@@ -51,13 +53,10 @@ public class TestServlet extends HttpServlet {
 
         final String finalFoo = foo;
         final int finalSize = size;
-        res.setTrailerFields(new Supplier<Map<String, String>>() {
-            @Override
-            public Map<String, String> get() {
-                Map<String, String> map = new HashMap<>();
-                map.put("bar", finalFoo + finalSize);
-                return map;
-            }
+        res.setTrailerFields(() -> {
+            Map<String, String> map = new HashMap<>();
+            map.put("bar", finalFoo + finalSize);
+            return map;
         });
         res.getWriter().write(sb.toString());
     }
