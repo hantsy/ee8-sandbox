@@ -44,9 +44,9 @@ The other specifications such as JMS, Batch have no updates in this version.
 
 Unfortunately, MVC(JSR 371) is vetoed in the final stage, but it is still existed as a community based specification. And JCache(JSR 107) which had missed the last train of Java EE 7, and also lost its attractiveness in Java EE 8.
   
-## Example codes (WIP)
+## Example codes
 
-Please see [Wiki pages](https://github.com/hantsy/ee8-sandbox/wiki) for more details.
+If you wonder the details of the codes, read [my notes for Java EE 8 migration](https://hantsy.gitbooks.io/java-ee-8-by-example/content/), it is also [an open source project](https://github.com/hantsy/javaee8-by-example-gitbook), welcome to contribute.
 
 ## Resources
 
