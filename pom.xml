@@ -11,9 +11,9 @@
     <modules>
         <module>mvc</module>
         <module>mvc-facelets</module>
-		<module>jsf-cdi-activation</module>
+        <module>jsf-cdi-activation</module>
         <module>jsf-compatible-mode-jsf22</module>
-		<module>jsf-cdi</module>
+        <module>jsf-cdi</module>
         <module>jsf-websocket</module>
         <module>jsf-datetime</module>
         <module>jsf-validwholebean</module>
@@ -40,13 +40,13 @@
         <module>jaxrs-client</module>
         <module>jaxrs-async</module>
         <module>security-basic</module>
-		<module>security-basic-db</module>
+        <module>security-basic-db</module>
         <module>security-form</module>
-		<module>security-form-db</module>
+        <module>security-form-db</module>
         <module>security-custom-form</module>
-		<module>security-custom-form-db</module>
+        <module>security-custom-form-db</module>
         <module>security-custom-auth</module>	
-		<module>security-custom-auth-db</module>				
+        <module>security-custom-auth-db</module>				
     </modules>    
 
     <properties>
@@ -65,7 +65,7 @@
         <version.eclipselink>2.7.0</version.eclipselink>
         <version.mockito>2.10.0</version.mockito>
         <version.glassfish>5.0</version.glassfish>
-        <version.payara>5.0.0.Alpha1</version.payara>
+        <version.payara>5.Beta2</version.payara>
         <version.arquillian-glassfish>1.0.1</version.arquillian-glassfish>
         <version.arquillian-payara>1.0.Beta2</version.arquillian-payara>
         <version.jersey>2.26</version.jersey>
@@ -116,13 +116,12 @@
             <dependency>
                 <groupId>javax.mvc</groupId>
                 <artifactId>javax.mvc-api</artifactId>
-                <version>1.0-edr2</version>
+                <version>1.0-pr</version>
             </dependency>
             <dependency>
-                <groupId>org.glassfish.ozark</groupId>
-                <artifactId>ozark</artifactId>
-                <version>1.0.0-m02</version>
-                <scope>runtime</scope>
+                <groupId>org.mvc-spec.ozark</groupId>
+                <artifactId>ozark-jersey</artifactId>
+                <version>1.0.0-m03</version>
             </dependency>
             
             <!-- test-->

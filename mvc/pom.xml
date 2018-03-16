@@ -44,8 +44,8 @@
             <artifactId>javax.mvc-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.ozark</groupId>
-            <artifactId>ozark</artifactId>
+            <groupId>org.mvc-spec.ozark</groupId>
+            <artifactId>ozark-jersey</artifactId>
             <scope>runtime</scope>
         </dependency>  
         
