@@ -65,7 +65,7 @@
         <version.eclipselink>2.7.0</version.eclipselink>
         <version.mockito>2.10.0</version.mockito>
         <version.glassfish>5.0</version.glassfish>
-        <version.payara>5.Beta2</version.payara>
+        <version.payara>5.181</version.payara>
         <version.arquillian-glassfish>1.0.1</version.arquillian-glassfish>
         <version.arquillian-payara>1.0.Beta2</version.arquillian-payara>
         <version.jersey>2.26</version.jersey>
