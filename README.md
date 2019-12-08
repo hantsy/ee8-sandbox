@@ -1,26 +1,26 @@
-#  A quick glance at Java EE 8
+#  Java EE 8/Jakarta EE 8 Sandbox
 
-The past September was a busy month, the most exciting news is Java 9 reaches GA, as well as the release of the long-waiting Java EE 8 and Glassfish v5. For more details, please read the official announcement [Java EE 8 and GlassFish 5.0 Released!](https://blogs.oracle.com/theaquarium/java-ee-8-is-final-and-glassfish-50-is-released) from Oracle blog portal.
+Java EE  is finally moved to the biggest Java community -  Eclipse Foundation.  It is great for Java developers. But due to some issues of Java EE brand,  we have to  use a new name to continue it.  Jakarta EE is elected from  Java communities. 
 
-## A brief intro of Java EE 8
 
-The world changes so quickly, after Java EE 7 was born in 2013, cloud service and microservice became more and more popular. Java EE had to embrace the changes, so a lot of perspectives are proposed to be brought into Java EE 8, including Configuration, Load Balance, Circuit breaker, Service Registry and Discovery, programnatic Security API, MVC etc. 
 
-But the road to Java EE 8 is not straight, most of proposed specfications are moved out of Java EE 8 finally. And in a long period, the development of some specifications were paused for some reasons. 
+## Migration to Jakarta EE 8
 
-To save Java EE, the [Java community](https://javaee-guardians.io/) created a [petition](https://www.change.org/p/larry-ellison-tell-oracle-to-move-forward-java-ee-as-a-critical-part-of-the-global-it-industry) and wished Oracle can move forward Java EE more quickly.
+In our project, when migrating the existing project to Jakarta EE 8, use the following new Jakarta EE API instead.
 
-At the same time, IBM, Redhat and other Java communities launched a new [MicroProfile](http://microprofile.io) which targets ligthweight Java EE and cloud computing service. Now it is a project under Eclipse foundation.
+```xml
+<dependency>
+    <groupId>jakarta.platform</groupId>
+    <artifactId>jakarta.jakartaee-api</artifactId>
+    <version>${jakartaee-api.version}</version>
+</dependency>
+```
 
-Although the Java EE 8 way is a little hard, finally it is released to the public. 
+Due to the historic reason, the existing classes and other resources in these jars still use *javax* as package prefix, it is good for backward compatibility.  There is no need to change the codes at all.
 
-And surprisingly Oracle decided to [open up Java EE progress](https://blogs.oracle.com/theaquarium/opening-up-java-ee) and [move it to Eclipse foundation](https://blogs.oracle.com/theaquarium/opening-up-ee-update). [An updated petition](https://www.change.org/p/larry-ellison-tell-oracle-to-move-forward-java-ee-as-a-critical-part-of-the-global-it-industry/u/21473794?utm_medium=email&utm_source=petition_update&utm_campaign=146669&sfmc_tk=xZ%2f6z4TGoQ02piKnRtK%2bejNgWC%2bWD6nr3P%2bcjkRrgGJqXJLLTSlXDQ6alq40O5pe&j=146669&sfmc_sub=46994739&l=32_HTML&u=27789648&mid=7259882&jb=1) was created to help moving Java EE to Eclipse more smoothly.
-
-Java EE 8 should be the last version released by Oracle(and Sun).
+But in future Jakarta EE 9 or x , it will use *jakarta*  for newly-added APIs.
 
 ## What is new in Java EE 8
-
-Like me, some developers are a little disappointed about Java EE 8(JSR 366) , even complain it comes a little late. But no doubt there are still lots of new features and improvements which are valuable to update ourselves.
 
 There tow new specifications were introduced in Java EE 8.
 
@@ -43,13 +43,13 @@ Some specifications have been updated to align with Java 8 and CDI or involved a
 The other specifications such as JMS, Batch have no updates in this version.
 
 Unfortunately, MVC(JSR 371) is vetoed in the final stage, but it is still existed as a community based specification. And JCache(JSR 107) which had missed the last train of Java EE 7, and also lost its attractiveness in Java EE 8.
-  
-## Example codes
 
-If you wonder the details of the codes, read [my notes for Java EE 8 migration](https://hantsy.gitbooks.io/java-ee-8-by-example/content/), it is also [an open source project](https://github.com/hantsy/javaee8-by-example-gitbook), welcome to contribute.
+## Understand the Source Codes
 
-## Resources
+If you want to know the details of the codes,  please read [my notes for Java EE 8 migration](https://hantsy.gitbooks.io/java-ee-8-by-example/content/), it also [open-sourced as a Github project](https://github.com/hantsy/javaee8-by-example-gitbook).
 
-I created a [Java EE 8 resource checklist](https://github.com/hantsy/awesome-javaee8), welcome to contribute.
+BTW, I maintained a [Java EE 8/Jatarta EE 8 resource checklist](https://github.com/hantsy/awesome-javaee8).
+
+Welcome to contribute.
 
 
