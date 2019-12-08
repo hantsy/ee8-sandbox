@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
-import javax.mvc.annotation.RedirectScoped;
+import javax.mvc.RedirectScoped;
 
 /**
  * Used to transport messages back to the client.

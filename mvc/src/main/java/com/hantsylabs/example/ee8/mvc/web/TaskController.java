@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.mvc.Models;
-import javax.mvc.Viewable;
-import javax.mvc.annotation.Controller;
-import javax.mvc.annotation.CsrfValid;
-import javax.mvc.annotation.View;
+import javax.mvc.Controller;
+import javax.mvc.View;
 import javax.mvc.binding.BindingResult;
+import javax.mvc.binding.ParamError;
+import javax.mvc.security.CsrfProtected;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -29,6 +29,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import org.eclipse.krazo.engine.Viewable;
 
 @Path("tasks")
 @Controller
@@ -85,18 +86,17 @@ public class TaskController {
     }
 
     @POST
-    @CsrfValid
+    @CsrfProtected
     @ValidateOnExecution(type = ExecutableType.NONE)
     public Response save(@Valid @BeanParam TaskForm form) {
         log.log(Level.INFO, "saving new task @{0}", form);
 
         if (validationResult.isFailed()) {
             AlertMessage alert = AlertMessage.danger("Validation voilations!");
-            validationResult.getAllViolations()
+            validationResult.getAllErrors()
                     .stream()
-                    .forEach((ConstraintViolation t) -> {
-                        String path = t.getPropertyPath().toString();
-                        alert.addError(path.substring(path.lastIndexOf(".") + 1), "", t.getMessage());
+                    .forEach((ParamError t) -> {
+                        alert.addError(t.getParamName(), "", t.getMessage());
                     });
             models.put("errors", alert);
             return Response.status(BAD_REQUEST).entity("add.jspx").build();
@@ -133,10 +133,10 @@ public class TaskController {
 
         if (validationResult.isFailed()) {
             AlertMessage alert = AlertMessage.danger("Validation voilations!");
-            validationResult.getAllViolations()
+            validationResult.getAllErrors()
                     .stream()
-                    .forEach((ConstraintViolation t) -> {
-                        alert.addError(t.getPropertyPath().toString(), "", t.getMessage());
+                    .forEach((ParamError t) -> {
+                        alert.addError(t.getParamName(), "", t.getMessage());
                     });
             models.put("errors", alert);
             return Response.status(BAD_REQUEST).entity("edit.jsp").build();

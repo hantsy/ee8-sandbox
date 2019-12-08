@@ -27,7 +27,7 @@
             <scope>provided</scope>
         </dependency>
      
-        <!-- Mvc jars. -->
+        <!-- Mvc jars -->
         <dependency>
             <groupId>javax.mvc</groupId>
             <artifactId>javax.mvc-api</artifactId>
