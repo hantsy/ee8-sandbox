@@ -16,16 +16,10 @@
   
     <dependencies>
         
-<!--        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>${version.eclipselink}</version>
-            <scope>provided</scope>
-        </dependency>-->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>${version.eclipselink}</version>
+            <version>${eclipselink.version}</version>
             <scope>provided</scope>
         </dependency>
     

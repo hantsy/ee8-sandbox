@@ -4,7 +4,7 @@
     <artifactId>ee8-cdi-event-async</artifactId>
     <packaging>war</packaging>
 
-    <name>CDI 2.0: Async Events</name>
+    <name>CDI 2.0: Asynchronous Events</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>
@@ -13,20 +13,8 @@
         <relativePath>../</relativePath>
     </parent>
 
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-    </properties>
-    
     <dependencies>
-        
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        
+            
         <!-- JSF 2.3 dependencies -->
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -36,29 +24,6 @@
         </dependency>
     
     </dependencies>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
    
 </project>

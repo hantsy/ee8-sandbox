@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Java EE 8 Sample</name>
+    <name>Jakarta EE 8 Sample</name>
 
     <modules>
         <module>mvc</module>
@@ -50,25 +50,37 @@
     </modules>    
 
     <properties>
-        <java.min.version>1.8</java.min.version>
-        <maven.min.version>3.3.0</maven.min.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        
-        <!-- cargo plugin -->
-        <integration.container.id>glassfish4x</integration.container.id>
-        <glassfish.home>${basedir}/target/cargo/installs/glassfish</glassfish.home>
-        <cargo.maven.containerUrl>http://download.oracle.com/glassfish/5.0/release/glassfish-5.0.zip</cargo.maven.containerUrl>
-        
-        <version.javaee-api>8.0</version.javaee-api>
-        <version.eclipselink>2.7.0</version.eclipselink>
-        <version.mockito>2.10.0</version.mockito>
-        <version.glassfish>5.0</version.glassfish>
-        <version.payara>5.181</version.payara>
-        <version.arquillian-glassfish>1.0.1</version.arquillian-glassfish>
-        <version.arquillian-payara>1.0.Beta2</version.arquillian-payara>
-        <version.jersey>2.26</version.jersey>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        <!-- Jakarta EE API -->
+        <jakartaee-api.version>8.0.0</jakartaee-api.version>
+
+        <!-- Maven Plugins -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
+        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
+
+        <!-- Arquillian BOM -->
+        <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
+
+        <!-- Glassfish server -->
+        <glassfish.version>5.1.0</glassfish.version>
+        <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
+        <jersey.version>2.28</jersey.version>
+        <eclipselink.version>2.7.4</eclipselink.version>
+        <jakarta.faces.version>2.3.9</jakarta.faces.version>
+
+        <!-- Payara server -->
+        <payara.version>5.194</payara.version>
+        <arquillian-payara-server.version>1.2</arquillian-payara-server.version>
+
+        <!-- skip tests by default -->
+        <skipTests>true</skipTests>
     </properties>
     
     <repositories>
@@ -100,73 +112,54 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${version.javaee-api}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-web-api</artifactId>
-                <version>${version.javaee-api}</version>
-                <scope>provided</scope>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>${jakartaee-api.version}</version>
             </dependency>
             
-            <!-- Not a part of Java EE 8 now. -->
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>jakarta.faces</artifactId>
+                <version>${jakarta.faces.version}</version>
+            </dependency>
+            
+            <!-- NOTE: MVC is NOT a part of Java EE/JatartaEE 8. -->
             <dependency>
                 <groupId>javax.mvc</groupId>
                 <artifactId>javax.mvc-api</artifactId>
-                <version>1.0-pr</version>
+                <version>1.0-pfd</version>
             </dependency>
             <dependency>
-                <groupId>org.mvc-spec.ozark</groupId>
-                <artifactId>ozark-jersey</artifactId>
-                <version>1.0.0-m03</version>
+                <groupId>org.eclipse.krazo</groupId>
+                <artifactId>krazo-jersey</artifactId>
+                <version>1.0.0-Beta1</version>
             </dependency>
             
-            <!-- test-->
+            <!-- test dependencies -->         
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.13.Final</version>
+                <version>${arquillian-bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
             <dependency>
-                <groupId>org.jboss.arquillian.container</groupId>
-                <artifactId>arquillian-container-test-api</artifactId>
-                <version>1.1.13.Final</version>
-            </dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>          
         </dependencies>
     </dependencyManagement>
     
     <dependencies>
-    
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         
-        <!-- Test dependencies which can be used in sub-modules -->
-        <!-- copied from  https://github.com/javaee-samples/javaee8-samples -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
+        
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
@@ -189,50 +182,32 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>xmlunit</groupId>
-            <artifactId>xmlunit</artifactId>
-            <version>1.6</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+        
         <dependency>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
             <version>1.5.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
         <dependency>
-            <groupId>net.sourceforge.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>2.27</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>rhino</groupId>
-            <artifactId>js</artifactId>
-            <version>1.7R2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20170516</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.jayway.awaitility</groupId>
+            <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
-            <version>1.7.0</version>
+            <version>4.0.1</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.2</version>
-            <scope>test</scope>
-        </dependency>
-        
+      
         <!-- JSON path -->
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -240,12 +215,20 @@
             <version>2.4.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+            <version>2.4.0</version>
+            <scope>test</scope>
+        </dependency>
         
         <!-- Mockito --> 
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${version.mockito}</version>
+            <version>3.2.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -262,7 +245,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -270,141 +253,189 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <aggregate>true</aggregate>
-                    <linkXRef>true</linkXRef>
+                    <skipTests>${skipTests}</skipTests>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <attachClasses>true</attachClasses>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <configuration>
-                    <rules>
-                        <requireMavenVersion>
-                            <message>At least Maven in version ${maven.min.version} is
-                                required.</message>
-                            <version>${maven.min.version}</version>
-                        </requireMavenVersion>
-                        <requireJavaVersion>
-                            <message>At least a JDK in version ${java.min.version} is
-                                required.</message>
-                            <version>${java.min.version}</version>
-                        </requireJavaVersion>
-                    </rules>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.cargo</groupId>
-                <artifactId>cargo-maven2-plugin</artifactId>
-                <inherited>true</inherited>
-                <configuration>
-                    <container>
-                        <containerId>${integration.container.id}</containerId>
-                        <type>installed</type>
-                        <home>${glassfish.home}</home>
-                    </container>
-                    <configuration>
-                        <type>standalone</type>
-                        <home>${glassfish.home}/glassfish/domains</home>
-                    </configuration>
-                </configuration>
-            </plugin>
-            <!--            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.2.0.Final</version>
-            </plugin>-->
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.3.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19.1</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
-    
-    <!-- Profiles for the application servers against which the samples are run -->
     <profiles>
-        
         <profile>
-            <id>default</id>
-            
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            
-        </profile>
-        <!-- ###  PAYARA  ### -->
-        <profile>
-            <id>payara-managed</id>
-            
-            <!--            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>-->
-            
-            <dependencies>
-                
-                <!-- Yasson (JSON-B RI) -->   
-                <dependency>
-                    <groupId>org.eclipse</groupId>
-                    <artifactId>yasson</artifactId>
-                    <version>1.0</version>
-                    <scope>runtime</scope>
-                </dependency>
-                
-                <!-- WebSocket client dependencies -->
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-container-grizzly-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <!-- The actual Arquillian connector -->
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-4-managed</artifactId> 
-                    <version>${version.arquillian-payara}</version> 
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            
+            <id>glassfish-local</id>
+            <properties>
+                <glassfish.home>${project.build.directory}/glassfish5</glassfish.home>
+                <glassfish.domainDir>${glassfish.home}/glassfish/domains</glassfish.domainDir>
+                <glassfish.domainName>domain1</glassfish.domainName>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${maven-dependency-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <!--
+                                             <groupId>fish.payara.distributions</groupId>
+                                            <artifactId>payara</artifactId>
+                                            <version>${payara.version}</version>
+                                            <type>zip</type>
+                                            -->
+                                            <groupId>org.glassfish.main.distributions</groupId>
+                                            <artifactId>glassfish</artifactId>
+                                            <version>${glassfish.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <version>${cargo-maven2-plugin.version}</version>
+                        <configuration>
+                            <container>
+                                <containerId>glassfish5x</containerId>
+                                <type>installed</type>
+                                <home>${glassfish.home}</home>
+                            </container>
+                            <configuration>
+                                <type>existing</type>
+                                <home>${glassfish.domainDir}</home>
+                                <properties>
+                                    <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
+                                    <cargo.remote.timeout>600000</cargo.remote.timeout>
+                                    <cargo.remote.password></cargo.remote.password>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                        <!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.glassfish.main.deployment</groupId>
+                                <artifactId>deployment-client</artifactId>
+                                <version>${glassfish.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+
+            </build>
+        </profile>
+        <profile>
+            <id>glassfish-remote</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <container>
+                                <containerId>glassfish5x</containerId>
+                                <type>remote</type>
+                            </container>
+                            <configuration>
+                                <type>runtime</type>
+                                <properties>
+                                    <!--   <cargo.remote.username>admin</cargo.remote.username>
+                                    <cargo.remote.password>adminadmin</cargo.remote.password>
+                                    <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                                    <cargo.hostname>localhost</cargo.hostname>-->
+                                </properties>
+                            </configuration>
+                        </configuration>
+                        <!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.glassfish.main.deployment</groupId>
+                                <artifactId>deployment-client</artifactId>
+                                <version>${glassfish.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>arq-payara-embedded</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>fish.payara.extras</groupId>
+                    <artifactId>payara-embedded-all</artifactId>
+                    <version>${payara.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-embedded</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <!-- This needs tuning -->
+                            <systemPropertyVariables>
+                                <!--                                <arquillian.launch>glassfish</arquillian.launch>-->
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+        <profile>
+            <id>arq-payara-managed</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
+            <dependencies>
+
+                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
+                <!--<dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
+                </dependency>-->
+
+                <!-- Payara Server Container adaptor  -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-managed</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${maven-dependency-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>unpack</id>
@@ -417,10 +448,10 @@
                                         <artifactItem>
                                             <groupId>fish.payara.distributions</groupId>
                                             <artifactId>payara</artifactId>
-                                            <version>${version.payara}</version>
+                                            <version>${payara.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
-                                            <outputDirectory>${session.executionRootDirectory}/target</outputDirectory>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
@@ -430,265 +461,29 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <environmentVariables>
-                                <GLASSFISH_HOME>${session.executionRootDirectory}/target/payara5</GLASSFISH_HOME>
+                                <GLASSFISH_HOME>${project.build.directory}/payara5</GLASSFISH_HOME>
                             </environmentVariables>
-                            <!-- This needs tuning -->
-                            <systemPropertyVariables>
-                                <!--                                <glassfishRemote_gfHome>${session.executionRootDirectory}/target/payara50</glassfishRemote_gfHome>
-                                <javaEEServer>payara-remote</javaEEServer>-->
-                                <arquillian.launch>payara</arquillian.launch>
-                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-        
         <profile>
-            <id>payara-embedded</id>
+            <id>arq-payara-remote</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
             <dependencies>
-                <dependency>
-                    <groupId>fish.payara.extras</groupId>
-                    <artifactId>payara-embedded-all</artifactId>
-                    <version>${version.payara}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.json</artifactId>
-                    <version>1.0.4</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-container-grizzly-client</artifactId>
-                    <version>1.13.1</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.core</groupId>
-                    <artifactId>jersey-client</artifactId>
-                    <version>2.25</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>${version.arquillian-glassfish}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/resources-glassfish-embedded</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                </testResources>
-            </build>
-        </profile>
-        
-        <profile>
-            <id>payara-remote</id>
-            
-            <dependencies>
-            
-                <!-- The actual Arquillian connector -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-4-remote</artifactId> 
-                    <version>${version.arquillian-payara}</version>
+                    <artifactId>arquillian-payara-server-remote</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <javaEEServer>payara-remote</javaEEServer>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
-        
-        
-        
-        <!-- ###  GLASSFISH  ### -->
-        <profile>
-            <id>glassfish-embedded</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>${version.glassfish}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.json</artifactId>
-                    <version>1.0.4</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-client</artifactId>
-                    <version>1.3</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-container-grizzly-client</artifactId>
-                    <version>1.3</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.core</groupId>
-                    <artifactId>jersey-client</artifactId>
-                    <version>${version.jersey}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>${version.arquillian-glassfish}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/resources-glassfish-embedded</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                </testResources>
-            </build>
-        </profile>
-        
-        <!--        <profile>
-            <id>glassfish-managed</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-managed-3.1</artifactId>
-                    <version>${version.arquillian-glassfish}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/resources-glassfish-managed</directory>
-                    </testResource>
-                </testResources>
-            </build>
-        </profile>-->
-        
-        <profile>
-            <id>glassfish-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.json</artifactId>
-                    <version>1.0.4</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-client</artifactId>
-                    <version>1.3</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.tyrus</groupId>
-                    <artifactId>tyrus-container-grizzly-client</artifactId>
-                    <version>1.3</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.core</groupId>
-                    <artifactId>jersey-client</artifactId>
-                    <version>${version.jersey}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-json-jackson</artifactId>
-                    <version>${version.jersey}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-json-processing</artifactId>
-                    <version>${version.jersey}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                    <version>${version.arquillian-glassfish}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <javaEEServer>glassfish-remote</javaEEServer>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/resources-glassfish-remote</directory>
-                        <filtering>true</filtering>
-                    </testResource>
-                </testResources>
-            </build>
-        </profile>     
     </profiles>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <aggregate>true</aggregate>
-                    <linkXRef>true</linkXRef>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
-
 </project>

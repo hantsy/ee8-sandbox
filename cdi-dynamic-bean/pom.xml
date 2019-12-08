@@ -4,7 +4,7 @@
     <artifactId>ee8-cdi-dynamic-bean</artifactId>
     <packaging>war</packaging>
 
-    <name>CDI 2.0: Add Bean dynamicially</name>
+    <name>CDI 2.0: Add Bean dynamically</name>
 
     <parent>
         <groupId>com.hantsylabs.example.ee8</groupId>
@@ -13,20 +13,4 @@
         <relativePath>../</relativePath>
     </parent>
 
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-    </properties>
-    
-    <dependencies>
-        
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    
-    </dependencies>
-   
 </project>
