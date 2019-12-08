@@ -13,3 +13,4 @@ nb*.xml
 *.ear
 target/
 /cdi-se/nbproject/
+/mvc/nb-configuration.xml

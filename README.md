@@ -6,7 +6,7 @@ Java EE  is finally moved to the biggest Java community -  Eclipse Foundation.  
 
 ## Migration to Jakarta EE 8
 
-In our project, when migrating the existing project to Jakarta EE 8, use the following new Jakarta EE API instead.
+In our project, when migrating the existing project to Jakarta EE 8, use the following new Jakarta EE API instead in your Maven POM.
 
 ```xml
 <dependency>
@@ -16,7 +16,23 @@ In our project, when migrating the existing project to Jakarta EE 8, use the fol
 </dependency>
 ```
 
-Due to the historic reason, the existing classes and other resources in these jars still use *javax* as package prefix, it is good for backward compatibility.  There is no need to change the codes at all.
+Or  Jakarta EE Web API if you are using *Web Profile* only.
+
+```xml
+<dependency>
+    <groupId>jakarta.platform</groupId>
+    <artifactId>jakarta.jakartaee-web-api</artifactId>
+    <version>${jakartaee-api.version}</version>
+</dependency>
+```
+Define  the propery *jakartaee-api.version* in *properties*.
+
+```xml
+<!-- Jakarta EE API -->
+<jakartaee-api.version>8.0.0</jakartaee-api.version>
+```
+
+ Due to the historic reason, the existing classes and other resources in these jars still use *javax* as package prefix, it is good for backward compatibility.  There is no need to change the codes at all.
 
 But in future Jakarta EE 9 or x , it will use *jakarta*  for newly-added APIs.
 
@@ -44,11 +60,11 @@ The other specifications such as JMS, Batch have no updates in this version.
 
 Unfortunately, MVC(JSR 371) is vetoed in the final stage, but it is still existed as a community based specification. And JCache(JSR 107) which had missed the last train of Java EE 7, and also lost its attractiveness in Java EE 8.
 
-## Understand the Source Codes
+## Understanding the Codes
 
-If you want to know the details of the codes,  please read [my notes for Java EE 8 migration](https://hantsy.gitbooks.io/java-ee-8-by-example/content/), it also [open-sourced as a Github project](https://github.com/hantsy/javaee8-by-example-gitbook).
+If you want to know more  details about  the source  codes,  please read [my notes of migrating to Java EE 8](https://hantsy.gitbooks.io/java-ee-8-by-example/content/), it is also [open-sourced as a Github project](https://github.com/hantsy/javaee8-by-example-gitbook).
 
-BTW, I maintained a [Java EE 8/Jatarta EE 8 resource checklist](https://github.com/hantsy/awesome-javaee8).
+BTW, I maintained a [Java EE 8/Jatarta EE 8 resource checklist](https://github.com/hantsy/awesome-javaee8) to collect the useful JavaEE8/Jakrata EE 8 resources.
 
 Welcome to contribute.
 
