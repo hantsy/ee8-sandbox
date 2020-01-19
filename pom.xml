@@ -124,16 +124,20 @@
             </dependency>
             
             <!-- NOTE: MVC is NOT a part of Java EE/JatartaEE 8. -->
-            <dependency>
-                <groupId>javax.mvc</groupId>
-                <artifactId>javax.mvc-api</artifactId>
-                <version>1.0-pfd</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.krazo</groupId>
-                <artifactId>krazo-jersey</artifactId>
-                <version>1.0.0-Beta1</version>
-            </dependency>
+            <!-- https://mvnrepository.com/artifact/javax.mvc/javax.mvc-api -->
+			<dependency>
+				<groupId>javax.mvc</groupId>
+				<artifactId>javax.mvc-api</artifactId>
+				<version>1.0.0-RC1</version>
+				<!--<scope>provided</scope>-->
+			</dependency>
+            <!-- https://mvnrepository.com/artifact/org.eclipse.krazo/krazo-jersey -->
+			<dependency>
+				<groupId>org.eclipse.krazo</groupId>
+				<artifactId>krazo-jersey</artifactId>
+				<version>1.0.0-RC1</version>
+			</dependency>
+
             
             <!-- test dependencies -->         
             <dependency>
