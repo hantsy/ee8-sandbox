@@ -128,14 +128,14 @@
 			<dependency>
 				<groupId>javax.mvc</groupId>
 				<artifactId>javax.mvc-api</artifactId>
-				<version>1.0.0-RC1</version>
+				<version>1.0.0</version>
 				<!--<scope>provided</scope>-->
 			</dependency>
             <!-- https://mvnrepository.com/artifact/org.eclipse.krazo/krazo-jersey -->
 			<dependency>
 				<groupId>org.eclipse.krazo</groupId>
 				<artifactId>krazo-jersey</artifactId>
-				<version>1.0.0-RC1</version>
+				<version>1.0.0</version>
 			</dependency>
 
             
