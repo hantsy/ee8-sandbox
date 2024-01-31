@@ -1,0 +1,425 @@
+repo_name: hantsy/ee8-sandbox
+report_id: b1a867962b0270515a62f93a3dca8854
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-31T08:13:10+00:00'
+requested_by: hantsy
+provider: github
+branch: master
+detected_tools_count: 30
+tools:
+- name: CSS 3
+  description: The latest evolution of the Cascading Style Sheets language
+  website_url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox
+  detection_source: Repo Metadata
+- name: Java
+  description: A concurrent, class-based, object-oriented, language specifically designed
+    to have as few implementation dependencies as possible
+  website_url: https://www.java.com
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox
+  detection_source: Repo Metadata
+- name: jQuery
+  description: The Write Less, Do More, JavaScript Library.
+  website_url: http://jquery.com/
+  version: 2.1.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript UI Libraries
+  image_url: https://img.stackshare.io/service/1021/lxEKmMnB_400x400.jpg
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/mvc-facelets/pom.xml
+  detection_source: mvc-facelets/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2016-04-11 13:03:49.000000000 Z
+- name: H2 Database
+  description: A relational database management system written in Java
+  website_url: http://www.h2database.com/
+  open_source: false
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Databases
+  image_url: https://img.stackshare.io/service/3105/h2-logo_square_400x400.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/security-basic-db/pom.xml
+  detection_source: security-basic-db/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2017-11-19 11:45:58.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox
+  detection_source: Repo Metadata
+- name: GlassFish
+  description: The Open Source Java EE Reference Implementation
+  website_url: https://glassfish.java.net
+  open_source: false
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Web Servers
+  image_url: https://img.stackshare.io/service/3628/515GX-Cc_400x400.jpg
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/cdi-event-async/pom.xml
+  detection_source: cdi-event-async/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2017-09-25 09:24:25.000000000 Z
+- name: JBoss
+  description: An open source Java EE-based application server
+  website_url: https://developers.redhat.com/products/eap
+  open_source: false
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Web Servers
+  image_url: https://img.stackshare.io/service/2188/unnamed.jpg
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2016-01-28 08:44:52.000000000 Z
+- name: JUnit
+  description: A programmer-oriented testing framework for Java
+  website_url: http://junit.org/
+  version: '4.12'
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2020/874086.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2016-01-28 08:44:52.000000000 Z
+- name: Mockito
+  description: Tasty mocking framework for unit tests in Java
+  website_url: https://site.mockito.org/
+  version: 3.2.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2021/4y634TJm_400x400.jpg
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: com.h2database:h2
+  description: H2 Database Engine
+  version: 1.4.196
+  license: MIT-feh
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/security-basic-db/pom.xml
+  detection_source: security-basic-db/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2017-11-19 11:45:58.000000000 Z
+  vulnerabilities:
+  - name: Arbitrary code execution in H2 Console
+    cve_id: CVE-2022-23221
+    cve_url: https://github.com/advisories/GHSA-45hx-wfhj-473x
+    detected_date: Jan 22
+    severity: critical
+    first_patched: 2.1.210
+  - name: RCE in H2 Console
+    cve_id: CVE-2021-42392
+    cve_url: https://github.com/advisories/GHSA-h376-j262-vhq6
+    detected_date: Jan 7
+    severity: critical
+    first_patched: 2.0.206
+  - name: 'Password exposure in H2 Database '
+    cve_id: CVE-2022-45868
+    cve_url: https://github.com/advisories/GHSA-22wj-vf5f-wrvj
+    detected_date: Nov 24
+    severity: high
+    first_patched: 2.2.220
+- name: com.jayway.jsonpath:json-path
+  description: Java port of Stefan Goessner JsonPath
+  version: 2.4.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+  vulnerabilities:
+  - name: json-path Out-of-bounds Write vulnerability
+    cve_id: CVE-2023-51074
+    cve_url: https://github.com/advisories/GHSA-pfh2-hfmq-phg5
+    detected_date: Jan 18
+    severity: moderate
+    first_patched: 2.9.0
+- name: com.jayway.jsonpath:json-path-assert
+  description: Assertions on Json using JsonPath
+  version: 2.4.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: junit:junit
+  description: JUnit is a unit testing framework for Java
+  version: '4.12'
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+  vulnerabilities:
+  - name: TemporaryFolder on unix-like systems does not limit access to created files
+    cve_id: CVE-2020-15250
+    cve_url: https://github.com/advisories/GHSA-269g-pwp5-87pp
+    detected_date: Aug 22
+    severity: moderate
+    first_patched: 4.13.1
+- name: org.awaitility:awaitility
+  description: A Java DSL for synchronizing asynchronous operations
+  version: 4.0.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.eclipse.persistence:eclipselink
+  description: EclipseLink build based upon Git transaction 368d603
+  license: EPL-1.0,AAL
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/mvc-facelets/pom.xml
+  detection_source: mvc-facelets/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: org.glassfish.jersey.core:jersey-client
+  description: Jersey core client implementation
+  license: NetCDF
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/jaxrs-client/pom.xml
+  detection_source: jaxrs-client/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: org.glassfish.jersey.inject:jersey-hk2
+  description: HK2 InjectionManager implementation
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/jaxrs-client/pom.xml
+  detection_source: jaxrs-client/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: org.glassfish.jersey.media:jersey-media-json-jackson
+  description: Jersey JSON Jackson entity providers support module
+  license: NetCDF
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/jaxrs-client/pom.xml
+  detection_source: jaxrs-client/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: org.glassfish.jersey.media:jersey-media-sse
+  description: Jersey Server Sent Events entity providers support module
+  license: NetCDF
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/jaxrs-client/pom.xml
+  detection_source: jaxrs-client/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 02:41:16.000000000 Z
+- name: org.glassfish:javax.faces
+  description: This is the master POM file for Oracle's Implementation of the JSF
+    2.2 Specification
+  version: 2.3.2
+  license: CDDL-1.1
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/cdi-event-async/pom.xml
+  detection_source: cdi-event-async/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2017-09-25 09:24:25.000000000 Z
+  vulnerabilities:
+  - name: Path Traversal in Eclipse Mojarra
+    cve_id: CVE-2018-14371
+    cve_url: https://github.com/advisories/GHSA-43q7-q5vp-3g68
+    detected_date: Nov 12
+    severity: high
+    first_patched: 2.3.7
+- name: org.hamcrest:hamcrest
+  description: Core API and libraries of hamcrest matcher framework
+  version: '2.2'
+  license: DSDP
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.jboss.arquillian.junit:arquillian-junit-container
+  description: JUnit Container Implementation for the Arquillian Project
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.jboss.arquillian.protocol:arquillian-protocol-servlet
+  description: Protocol handler for communicating using a servlet / http following
+    the Servlet 2.5/ 2.5/.x spec
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven
+  description: Implementation for Resolving Dependencies from a Maven Backend
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive
+  description: Implementation for Resolving Dependencies from a Maven Backend to a
+    ShrinkWrap Archive
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.mockito:mockito-core
+  description: Mockito mock objects library core API and implementation
+  version: 3.2.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.skyscreamer:jsonassert
+  description: A library to develop RESTful but flexible APIs
+  version: 1.5.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-01-19 13:54:54.000000000 Z
+- name: org.webjars:bootstrap
+  description: WebJar for Bootstrap
+  version: 3.3.5
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/mvc-facelets/pom.xml
+  detection_source: mvc-facelets/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 03:22:39.000000000 Z
+- name: org.webjars:font-awesome
+  description: WebJar for Font Awesome
+  version: 4.3.0
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/mvc-facelets/pom.xml
+  detection_source: mvc-facelets/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 03:22:39.000000000 Z
+- name: org.webjars:jquery
+  description: WebJar for jQuery
+  version: 2.1.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/ee8-sandbox/blob/master/mvc-facelets/pom.xml
+  detection_source: mvc-facelets/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-08 03:22:39.000000000 Z
